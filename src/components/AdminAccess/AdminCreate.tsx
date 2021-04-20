@@ -37,7 +37,7 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit = (event: any) => {
+  handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     console.log(this.props.token);
     let token = this.props.token
@@ -71,27 +71,9 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
           image: "",
           price: "",
         });
-        // this.props.fetchDietlogs();
       })
       .catch((err) => console.log(err));
   };
-
-  // private handleInputChanges = (e: React.FormEvent<HTMLInputElement>) => {
-  //   e.preventDefault();
-  //   this.setState({
-  //     [e.currentTarget.name]: e.currentTarget.value,
-  //   });
-  // };
-
-  // saveInput = (event: any) => {
-  //   this.setState({ input: event.target.value });
-  // };
-
-  // addNewItem = () => {
-  //   let { color, input } = this.state;
-  //   color.push(input);
-  //   this.setState({ color: color });
-  // };
 
   render() {
     const { submitSuccess, loading } = this.state;
