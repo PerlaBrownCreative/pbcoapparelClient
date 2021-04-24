@@ -3,6 +3,7 @@ import "./AdminCreate.css";
 
 export interface AdminCreateProps {
   token: string;
+  fetchProductslogs: Function;
 }
 
 export interface AdminCreateState {
@@ -71,6 +72,7 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
           image: "",
           price: "",
         });
+        this.props.fetchProductslogs();
       })
       .catch((err) => console.log(err));
   };
