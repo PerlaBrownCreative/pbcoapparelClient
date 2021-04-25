@@ -13,7 +13,9 @@ import Cart from "../Cart/Cart";
 //styles
 import { Wrapper, StyledButton } from "./ProductslogFetch.styles";
 
-interface Props {}
+interface CartItemProps {
+  token: string;
+}
 
 //Types
 export type CartItemType = {
@@ -29,7 +31,7 @@ export type CartItemType = {
 const getProducts = async (): Promise<CartItemType[]> =>
   await (await fetch("https://fakestoreapi.com/products")).json();
 
-const ProductslogCards: React.SFC<Props> = (props) => {
+const ProductslogCards: React.SFC<CartItemProps> = (props) => {
   const [cartOpen, setCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([] as CartItemType[]);
 

@@ -4,10 +4,12 @@ import Header from "./Header";
 import Footer from "./Footer";
 import AdminIndex from "./AdminAccess/AdminIndex";
 import ProductslogCards from "./Productslog/ProductslogFetch";
+import Auth from "../auth/Auth";
 
 export interface HomepageProps {
   clearToken: () => void;
   token: string;
+  updateToken: Function;
 }
 
 export interface HomepageState {}
@@ -17,14 +19,20 @@ class Homepage extends React.Component<HomepageProps, HomepageState> {
     super(props);
     this.state = {};
   }
+
+  // protectedViews = () => {
+  //   return localStorage.getItem("token") ? (
+  //     <AdminIndex token={this.props.token} clearToken={this.props.clearToken} />
+  //   ) : (
+  //     <Auth updateToken={this.props.updateToken} />
+  //   );
+  // };
+
   render() {
     return (
       <div>
-        <Sitebar clearToken={this.props.clearToken} />
-        <Header />
-        <AdminIndex token={this.props.token} />
-        <ProductslogCards />
-        <Footer />
+        {/* <AdminIndex token={this.state.token} /> */}
+        <ProductslogCards token={this.props.token} />
       </div>
     );
   }

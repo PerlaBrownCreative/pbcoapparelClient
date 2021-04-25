@@ -18,11 +18,13 @@ import {
   Label,
   Form,
 } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Route, Link, Switch } from "react-router-dom";
 import "./Navbarstyle.css";
 
 export interface SitebarProps {
   clearToken: Function;
+  token: string;
+  updateToken: Function;
 }
 
 export interface SitebarState {
@@ -46,15 +48,8 @@ class Sitebar extends React.Component<SitebarProps, SitebarState> {
   render() {
     return (
       <div>
-        <nav className="py-2 bg-light border-bottom navbarheader">
-          <div className="container d-flex flex-wrap">
-            <ul className="nav me-auto">
-              <div className="promotop">
-                FREE SHIPPING FOR US ORDERS OVER $99!
-              </div>
-            </ul>
-          </div>
-        </nav>
+        <div>FREE SHIPPING FOR US ORDERS OVER $99!</div>
+
         <Navbar className="navbar1" light expand="md">
           <NavbarBrand href="/" className="navbarbrandnav">
             PB + Co. Apparel
@@ -72,6 +67,22 @@ class Sitebar extends React.Component<SitebarProps, SitebarState> {
                 />
               </FormGroup>
             </Nav>
+          </Collapse>
+        </Navbar>
+
+        <Navbar color="light" light expand="md">
+          {/* <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar> */}
+          <Nav className="mr-auto" navbar>
+            <NavItem>
+              <Link to="/store">
+                <NavLink>Store</NavLink>
+              </Link>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/components/">Contact</NavLink>
+            </NavItem>
+
             <Button
               classname="logoutbtn"
               onClick={() => {
@@ -88,35 +99,8 @@ class Sitebar extends React.Component<SitebarProps, SitebarState> {
             >
               Logout
             </Button>
-          </Collapse>
+          </Nav>
         </Navbar>
-        <hr className="hrnav" />
-        <nav className="py-2 navbarheader2">
-          <div className="container d-flex flex-wrap">
-            <ul className="nav me-auto">
-              <li className="nav-item">
-                <a href="#" className="nav-link link-dark px-2 ">
-                  Tees
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="#" className="nav-link link-dark px-2">
-                  Hats
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="#" className="nav-link link-dark px-2">
-                  Mugs
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="#" className="nav-link link-dark px-2">
-                  Other
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
       </div>
     );
   }

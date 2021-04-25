@@ -3,6 +3,11 @@ import "./App.css";
 import Auth from "./auth/Auth";
 import Header from "./components/Header";
 import Homepage from "./components/Homepage";
+import Sitebar from "./components/Navbar";
+import Footer from "./components/Footer";
+import AdminIndex from "./components/AdminAccess/AdminIndex";
+import ProductslogCards from "./components/Productslog/ProductslogFetch";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 export interface AppProps {}
 
@@ -30,16 +35,42 @@ class App extends React.Component<AppProps, AppState> {
     });
   };
 
-  protectedViews = () => {
-    return localStorage.getItem("token") ? (
-      <Homepage token={this.state.token} clearToken={this.clearToken} />
-    ) : (
-      <Auth updateToken={this.updateToken} />
-    );
-  };
-
   render() {
-    return <div>{this.protectedViews()}</div>;
+    return (
+      <div>
+        {/* {this.protectedViews()} */}
+        {/* <Homepage
+          token={this.state.token}
+          clearToken={this.clearToken}
+          updateToken={this.updateToken}
+        /> */}
+        <Router>
+          <Sitebar
+            token={this.state.token}
+            clearToken={this.clearToken}
+            updateToken={this.updateToken}
+          />
+          <Header />
+
+          <Switch>
+            <Route
+              exact
+              path="/"
+              component={() => (
+                <Homepage
+                  token={this.state.token}
+                  clearToken={this.clearToken}
+                  updateToken={this.updateToken}
+                />
+              )}
+            />
+            <Route exact path="/store" component={ProductslogCards} />
+            <Route exact path="/contact" component={ProductslogCards} />
+          </Switch>
+          <Footer />
+        </Router>
+      </div>
+    );
   }
 }
 
