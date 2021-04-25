@@ -14,7 +14,7 @@ import Cart from "../Cart/Cart";
 import { Wrapper, StyledButton } from "./ProductslogFetch.styles";
 
 interface CartItemProps {
-  token: string;
+  // token: string;
 }
 
 //Types

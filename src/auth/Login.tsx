@@ -6,6 +6,8 @@ const Regex = RegExp(
 
 interface LoginProps {
   updateToken: Function;
+  setUsername: Function;
+  setRole: Function;
 }
 
 interface LoginState {
@@ -84,16 +86,9 @@ export class Login extends React.Component<LoginProps, LoginState> {
           console.log(data);
           console.log(data.sessionToken);
           this.props.updateToken(data.sessionToken);
-          let checkToken = data.sessionToken;
-          if (checkToken === undefined) {
-            alert("Username not found");
-            return;
-          } else {
-            alert("You are logged in!");
-          }
+          this.props.setUsername(data.user.username);
+          this.props.setRole(data.user.role);
         });
-    } else {
-      alert("Please ensure everything is correct");
     }
   };
 
@@ -126,11 +121,7 @@ export class Login extends React.Component<LoginProps, LoginState> {
                 <span style={{ color: "red" }}>{errors.password}</span>
               )}
             </div>
-            <div className="role">
-              <label htmlFor="role">Role</label>
-              <input type="role" name="role" onChange={this.handleChange} />
-              {/* {errors.password.length > 0 &&  <span style={{color: "red"}}>{errors.password}</span>} */}
-            </div>
+
             <div className="submit">
               <button>Login</button>
             </div>

@@ -1,4 +1,6 @@
 import React from "react";
+import { FaRegUserCircle } from "react-icons/fa";
+
 import {
   Button,
   Collapse,
@@ -20,11 +22,14 @@ import {
 } from "reactstrap";
 import { Route, Link, Switch } from "react-router-dom";
 import "./Navbarstyle.css";
+import Auth from "../auth/Auth";
 
 export interface SitebarProps {
   clearToken: Function;
   token: string;
   updateToken: Function;
+  setUsername: Function;
+  setRole: Function;
 }
 
 export interface SitebarState {
@@ -66,6 +71,16 @@ class Sitebar extends React.Component<SitebarProps, SitebarState> {
                   placeholder="search products"
                 />
               </FormGroup>
+              <FaRegUserCircle
+                className="icon"
+                style={{
+                  position: "absolute",
+                  top: "43px",
+                  right: "120px",
+                }}
+                size="25px"
+                color="grey"
+              />
             </Nav>
           </Collapse>
         </Navbar>
@@ -80,17 +95,15 @@ class Sitebar extends React.Component<SitebarProps, SitebarState> {
               </Link>
             </NavItem>
             <NavItem>
-              <NavLink href="/components/">Contact</NavLink>
+              <Link to="/contact">
+                <NavLink>Contact</NavLink>
+              </Link>
             </NavItem>
-
-            <Button
-              classname="logoutbtn"
-              onClick={() => {
-                this.props.clearToken();
-              }}
-            >
-              Login
-            </Button>
+            <Auth
+              updateToken={this.props.updateToken}
+              setUsername={this.props.setUsername}
+              setRole={this.props.setRole}
+            />
             <Button
               classname="logoutbtn"
               onClick={() => {

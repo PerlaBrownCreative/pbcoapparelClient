@@ -8,11 +8,14 @@ import Footer from "./components/Footer";
 import AdminIndex from "./components/AdminAccess/AdminIndex";
 import ProductslogCards from "./components/Productslog/ProductslogFetch";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Contact from "./components/Contact";
 
 export interface AppProps {}
 
 export interface AppState {
   token: string;
+  username: string;
+  role: string;
 }
 
 class App extends React.Component<AppProps, AppState> {
@@ -20,6 +23,8 @@ class App extends React.Component<AppProps, AppState> {
     super(props);
     this.state = {
       token: "",
+      username: "",
+      role: "",
     };
   }
 
@@ -35,23 +40,45 @@ class App extends React.Component<AppProps, AppState> {
     });
   };
 
+  // useEffect(() => {
+  //   if (localStorage.getItem("username")) {
+  //     setUsername(localStorage.getItem("username"));
+  //   }
+  // }, []);
+
+  setUsername = (username: string) => {
+    localStorage.setItem("username", username);
+    this.setState({ username: username });
+  };
+
+  setRole = (role: string) => {
+    localStorage.setItem("role", role);
+    this.setState({ role: role });
+  };
+
+  protectedViews = () => {
+    return localStorage.getItem("token") && localStorage.getItem("role") ? (
+      <AdminIndex
+        token={this.state.token}
+        username={this.state.username}
+        role={this.state.role}
+      />
+    ) : null;
+  };
+
   render() {
     return (
       <div>
-        {/* {this.protectedViews()} */}
-        {/* <Homepage
-          token={this.state.token}
-          clearToken={this.clearToken}
-          updateToken={this.updateToken}
-        /> */}
         <Router>
           <Sitebar
             token={this.state.token}
             clearToken={this.clearToken}
             updateToken={this.updateToken}
+            setUsername={this.setUsername}
+            setRole={this.setRole}
           />
           <Header />
-
+          {this.protectedViews()}
           <Switch>
             <Route
               exact
@@ -65,8 +92,9 @@ class App extends React.Component<AppProps, AppState> {
               )}
             />
             <Route exact path="/store" component={ProductslogCards} />
-            <Route exact path="/contact" component={ProductslogCards} />
+            <Route exact path="/contact" component={Contact} />
           </Switch>
+
           <Footer />
         </Router>
       </div>

@@ -6,6 +6,8 @@ import AdminDeleteProduct from "./AdminDeleteProduct";
 
 export interface AdminIndexProps {
   token: string;
+  username: string;
+  role: string;
 }
 
 export interface AdminIndexState {

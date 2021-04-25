@@ -20,19 +20,10 @@ class Homepage extends React.Component<HomepageProps, HomepageState> {
     this.state = {};
   }
 
-  // protectedViews = () => {
-  //   return localStorage.getItem("token") ? (
-  //     <AdminIndex token={this.props.token} clearToken={this.props.clearToken} />
-  //   ) : (
-  //     <Auth updateToken={this.props.updateToken} />
-  //   );
-  // };
-
   render() {
     return (
       <div>
-        {/* <AdminIndex token={this.state.token} /> */}
-        <ProductslogCards token={this.props.token} />
+        <ProductslogCards />
       </div>
     );
   }

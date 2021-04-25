@@ -1,5 +1,5 @@
 import React from "react";
-import { Jumbotron } from "reactstrap";
+import { Jumbotron, Navbar, Container, NavbarBrand } from "reactstrap";
 
 export interface FooterProps {}
 
@@ -11,7 +11,13 @@ class Footer extends React.Component<FooterProps, FooterState> {
     this.state = {};
   }
   render() {
-    return <div></div>;
+    return (
+      <div>
+        <Navbar color="dark" dark>
+          <Container>PB + Co. Apparel</Container>
+        </Navbar>
+      </div>
+    );
   }
 }
 
