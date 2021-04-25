@@ -22,11 +22,14 @@ class AdminDeleteProduct extends React.Component<
 
   deleteProductlog = () => {
     console.log(this.props.productlog);
-    fetch(`http://localhost:3000/productslog/delete/${this.props.productlog}`, {
+    let token = this.props.token
+      ? this.props.token
+      : localStorage.getItem("token");
+    fetch(`http://localhost:4000/productslog/delete/${this.props.productlog}`, {
       method: "DELETE",
       headers: new Headers({
         "Content-Type": "application/json",
-        Authorization: this.props.token,
+        Authorization: token ? token : "",
       }),
     }).then(() => this.props.fetchProductslogs());
   };

@@ -29,7 +29,7 @@ class AdminIndex extends React.Component<AdminIndexProps, AdminIndexState> {
     let token = this.props.token
       ? this.props.token
       : localStorage.getItem("token");
-    fetch("http://localhost:3000/productslog/", {
+    fetch("http://localhost:4000/productslog/", {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",

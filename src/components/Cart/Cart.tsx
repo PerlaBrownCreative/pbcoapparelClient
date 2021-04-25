@@ -1,3 +1,4 @@
+import React from "react";
 import CartItem from "../CartItem/CartItem";
 //Styles
 import { Wrapper } from "./Cart.styles";

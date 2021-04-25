@@ -66,7 +66,7 @@ export class Signup extends React.Component<SignupProps, SignupState> {
     if (validity === true) {
       console.log("Registering can be done");
 
-      let url = "http://localhost:3000/user/create";
+      let url = "http://localhost:4000/user/create";
       fetch(url, {
         method: "POST",
         body: JSON.stringify({

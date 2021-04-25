@@ -65,7 +65,7 @@ export class Login extends React.Component<LoginProps, LoginState> {
     if (validity === true) {
       console.log("Registering can be done");
 
-      let url = "http://localhost:3000/user/login";
+      let url = "http://localhost:4000/user/login";
       fetch(url, {
         method: "POST",
         body: JSON.stringify({

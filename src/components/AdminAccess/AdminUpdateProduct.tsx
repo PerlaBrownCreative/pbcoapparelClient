@@ -26,6 +26,7 @@ export interface AdminUpdateProductState {
   editImage: String;
   editPrice: String;
   loading: Boolean;
+  isOpen: Boolean;
 }
 
 class AdminUpdateProduct extends React.Component<
@@ -42,42 +43,70 @@ class AdminUpdateProduct extends React.Component<
       editImage: "",
       editPrice: "",
       loading: false,
+      isOpen: true,
     };
+    this.handleToggle = this.handleToggle.bind(this);
   }
+
+  handleToggle = (event: any) => {
+    this.setState({ isOpen: !this.state.isOpen });
+  };
 
   productUpdate = (event: any) => {
     event.preventDefault();
-    // fetch(
-    //   `http://localhost:3000/productslog/update/${this.props.productslog}`,
-    //   {
-    //     method: "PUT",
-    //     body: JSON.stringify({
-    //       productslog: {
-    //         design_name: this.state.editDesign_Name,
-    //         product_description: this.state.editProduct_Description,
-    //         color: this.state.editColor,
-    //         size: this.state.editSize,
-    //         image: this.state.editImage,
-    //         price: this.state.editPrice,
-    //       },
-    //     }),
-    //     headers: new Headers({
-    //       "Content-Type": "application/json",
-    //       Authorization: this.props.token,
-    //     }),
-    //   }
-    // ).then((data) => {
-    //   this.setState({
-    //     editDesign_Name: "",
-    //     editProduct_Description: "",
-    //     editColor: "",
-    //     editSize: "",
-    //     editImage: "",
-    //     editPrice: "",
-    //   });
-    //   this.props.fetchProductslogs();
-    //   //   this.updateOff();
-    // });
+    let token = this.props.token
+      ? this.props.token
+      : localStorage.getItem("token");
+    fetch(
+      `http://localhost:4000/productslog/update/${this.props.productlog.id}`,
+      {
+        method: "PUT",
+        body: JSON.stringify({
+          productslog: {
+            design_name: this.state.editDesign_Name,
+            product_description: this.state.editProduct_Description,
+            color: this.state.editColor,
+            size: this.state.editSize,
+            image: this.state.editImage,
+            price: this.state.editPrice,
+          },
+        }),
+        headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: token ? token : "",
+        }),
+      }
+    ).then((data) => {
+      this.setState({
+        editDesign_Name: "",
+        editProduct_Description: "",
+        editColor: "",
+        editSize: "",
+        editImage: "",
+        editPrice: "",
+      });
+      this.props.fetchProductslogs();
+      this.handleToggle(event);
+    });
+  };
+
+  uploadNewImage = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "pbcoApparel");
+    this.setState({ loading: !this.state.loading });
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/dnesqlk9j/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const file = await res.json();
+    this.setState({ editImage: file.secure_url });
+    console.log(file.secure_url);
+    this.setState({ loading: !this.state.loading });
   };
 
   render() {
@@ -85,8 +114,11 @@ class AdminUpdateProduct extends React.Component<
 
     return (
       <div>
-        <Modal isOpen={true}>
-          <ModalHeader closeButton>Update Product</ModalHeader>
+        <Button color="danger" onClick={this.handleToggle}>
+          Update
+        </Button>
+        <Modal isOpen={!this.state.isOpen}>
+          <ModalHeader close={!this.state.isOpen}>Update Product</ModalHeader>
           <ModalBody>
             <Form onSubmit={this.productUpdate}>
               <FormGroup>
@@ -105,7 +137,7 @@ class AdminUpdateProduct extends React.Component<
                 <Input
                   name="product_description"
                   onChange={(e) =>
-                    this.setState({ editDesign_Name: e.target.value })
+                    this.setState({ editProduct_Description: e.target.value })
                   }
                 />
               </FormGroup>
@@ -113,43 +145,51 @@ class AdminUpdateProduct extends React.Component<
                 <Label htmlFor="color">Edit Color:</Label>
                 <Input
                   name="color"
-                  onChange={(e) =>
-                    this.setState({ editDesign_Name: e.target.value })
-                  }
+                  onChange={(e) => this.setState({ editColor: e.target.value })}
                 />
               </FormGroup>
               <FormGroup>
                 <Label htmlFor="size">Edit Size:</Label>
                 <Input
                   name="size"
-                  onChange={(e) =>
-                    this.setState({ editDesign_Name: e.target.value })
-                  }
+                  onChange={(e) => this.setState({ editSize: e.target.value })}
                 />
               </FormGroup>
+
               <FormGroup>
                 <Label htmlFor="image">Edit Image:</Label>
-                <Input
-                  name="image"
-                  onChange={(e) =>
-                    this.setState({ editDesign_Name: e.target.value })
-                  }
-                />
+                <Input type="file" name="file" onChange={this.uploadNewImage} />
+                {this.state.loading ? (
+                  <h3>Loading...</h3>
+                ) : (
+                  <img
+                    src={`${this.state.editImage}`}
+                    style={{ width: "100px" }}
+                  />
+                )}
               </FormGroup>
               <FormGroup>
                 <Label htmlFor="price">Edit Price:</Label>
                 <Input
                   name="price"
-                  onChange={(e) =>
-                    this.setState({ editDesign_Name: e.target.value })
-                  }
+                  onChange={(e) => this.setState({ editPrice: e.target.value })}
                 />
               </FormGroup>
-              <Button className="modaleditbtn" type="submit">
+              <Button
+                className="modaleditbtn"
+                type="submit"
+                onClick={this.handleToggle}
+              >
                 Close Without Editing
               </Button>
-              <Button className="modaleditbtn1" type="submit">
-                Update the Diet Log!
+              <Button
+                className="modaleditbtn1"
+                type="submit"
+                onClick={(event) => {
+                  this.productUpdate(event);
+                }}
+              >
+                Update the Product!
               </Button>
             </Form>
           </ModalBody>

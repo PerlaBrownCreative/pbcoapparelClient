@@ -1,5 +1,16 @@
 import React from "react";
 import "./AdminCreate.css";
+import {
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Container,
+  Row,
+  Col,
+  FormText,
+} from "reactstrap";
 
 export interface AdminCreateProps {
   token: string;
@@ -38,13 +49,32 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  uploadImage = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "pbcoApparel");
+    this.setState({ loading: !this.state.loading });
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/dnesqlk9j/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const file = await res.json();
+    this.setState({ image: file.secure_url });
+    console.log(file.secure_url);
+    this.setState({ loading: !this.state.loading });
+  };
+
   handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     console.log(this.props.token);
     let token = this.props.token
       ? this.props.token
       : localStorage.getItem("token");
-    fetch("http://localhost:3000/productslog/create", {
+    fetch("http://localhost:4000/productslog/create", {
       method: "POST",
       body: JSON.stringify({
         productslog: {
@@ -144,17 +174,24 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
                 placeholder=""
               />
             </div>
+
             <div className="form-group col-md-12">
-              <label htmlFor="image"> Image </label>
-              <input
-                type="text"
-                id="image"
-                onChange={(e) => this.setState({ image: e.target.value })}
-                name="image"
-                className="form-control"
-                placeholder=""
+              <Label htmlFor="image">
+                <h6>Upload Image:</h6>
+              </Label>
+              <Input
+                type="file"
+                name="file"
+                className="choosefilebtn"
+                onChange={this.uploadImage}
               />
+              {loading ? (
+                <h3>Loading...</h3>
+              ) : (
+                <img src={this.state.image} style={{ width: "100px" }} />
+              )}
             </div>
+
             <div className="form-group col-md-12">
               <label htmlFor="price"> Price </label>
               <input
