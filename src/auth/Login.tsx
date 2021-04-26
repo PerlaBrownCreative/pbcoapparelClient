@@ -88,7 +88,17 @@ export class Login extends React.Component<LoginProps, LoginState> {
           this.props.updateToken(data.sessionToken);
           this.props.setUsername(data.user.username);
           this.props.setRole(data.user.role);
+          let checkToken = data.sessionToken;
+
+          if (checkToken === undefined) {
+            alert("Please provide info to signup");
+            return;
+          } else {
+            alert("You have signed up!");
+          }
         });
+    } else {
+      alert("Please ensure everything is correct");
     }
   };
 

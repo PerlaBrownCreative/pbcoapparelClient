@@ -41,7 +41,9 @@ class Auth extends React.Component<AuthProps, AuthState> {
   render() {
     return (
       <div>
-        <Button onClick={this.handleModal}>Login or Signup</Button>
+        <Button className="loginoroutButton" onClick={this.handleModal}>
+          Login or Signup
+        </Button>
         <Modal isOpen={!this.state.isOpen}>
           <ModalBody>
             <div>

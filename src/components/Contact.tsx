@@ -8,7 +8,10 @@ function ContactForm() {
     return <p>Thanks for contacting us!</p>;
   }
   return (
-    <Form onSubmit={handleSubmit}>
+      <div>
+    <Form onSubmit={handleSubmit} className="contactFrm">
+    <p>We love feedback! Leave us a message and we'll email you back promptly. Have a great day!</p>
+
       <FormGroup>
         <Label htmlFor="email">Email Address</Label>
         <Input id="email" type="email" name="email" />
@@ -17,7 +20,8 @@ function ContactForm() {
 
       <FormGroup>
         <Label htmlFor="message">Message</Label>
-        <textarea id="message" name="message" />
+        <Label for="exampleText">Text Area</Label>
+        <Input type="textarea" name="message" id="message" />
         <ValidationError
           prefix="Message"
           field="message"
@@ -25,10 +29,11 @@ function ContactForm() {
         />
       </FormGroup>
 
-      <button type="submit" disabled={state.submitting}>
+      <Button type="submit" disabled={state.submitting}>
         Submit
-      </button>
+      </Button>
     </Form>
+    </div>
   );
 }
 

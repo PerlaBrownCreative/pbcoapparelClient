@@ -13,8 +13,8 @@ class Footer extends React.Component<FooterProps, FooterState> {
   render() {
     return (
       <div>
-        <Navbar color="dark" dark>
-          <Container>PB + Co. Apparel</Container>
+        <Navbar color="dark" className="footerBottom">
+          <p>PB + Co. Apparel</p>
         </Navbar>
       </div>
     );

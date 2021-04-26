@@ -2,6 +2,7 @@ import React from "react";
 import { FaRegUserCircle } from "react-icons/fa";
 
 import {
+  Alert,
   Button,
   Collapse,
   Navbar,
@@ -19,6 +20,8 @@ import {
   FormGroup,
   Label,
   Form,
+  Row,
+  Col,
 } from "reactstrap";
 import { Route, Link, Switch } from "react-router-dom";
 import "./Navbarstyle.css";
@@ -30,6 +33,7 @@ export interface SitebarProps {
   updateToken: Function;
   setUsername: Function;
   setRole: Function;
+  username: string;
 }
 
 export interface SitebarState {
@@ -50,13 +54,23 @@ class Sitebar extends React.Component<SitebarProps, SitebarState> {
     this.setState({ isOpen: !this.state.isOpen });
   };
 
+  displayName = () => {
+    return localStorage.getItem("token") ? `Hi ${this.props.username}!` : null;
+  };
+
   render() {
     return (
       <div>
-        <div>FREE SHIPPING FOR US ORDERS OVER $99!</div>
+        <Row>
+          <Col>
+            <Alert className="topMessage">
+              FREE SHIPPING FOR US ORDERS OVER $99!
+            </Alert>
+          </Col>
+        </Row>
 
         <Navbar className="navbar1" light expand="md">
-          <NavbarBrand href="/" className="navbarbrandnav">
+          <NavbarBrand href="/" className="logo">
             PB + Co. Apparel
           </NavbarBrand>
           <NavbarToggler onClick={this.handleToggle} />
@@ -76,36 +90,40 @@ class Sitebar extends React.Component<SitebarProps, SitebarState> {
                 style={{
                   position: "absolute",
                   top: "43px",
-                  right: "120px",
+                  right: "100px",
                 }}
                 size="25px"
                 color="grey"
               />
+              <NavItem>{this.displayName()}</NavItem>
             </Nav>
           </Collapse>
         </Navbar>
 
-        <Navbar color="light" light expand="md">
+        <Navbar className="bottomNav" light expand="md">
           {/* <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar> */}
-          <Nav className="mr-auto" navbar>
+          <Nav className="bottomNavText">
             <NavItem>
               <Link to="/store">
-                <NavLink>Store</NavLink>
+                <NavLink className="linkcolor">Store</NavLink>
               </Link>
             </NavItem>
-            <NavItem>
+            <NavItem className="linkcolor">
               <Link to="/contact">
-                <NavLink>Contact</NavLink>
+                <NavLink className="contactLink linkcolor">Contact</NavLink>
               </Link>
             </NavItem>
-            <Auth
-              updateToken={this.props.updateToken}
-              setUsername={this.props.setUsername}
-              setRole={this.props.setRole}
-            />
+            <div className="loginorout">
+              <Auth
+                updateToken={this.props.updateToken}
+                setUsername={this.props.setUsername}
+                setRole={this.props.setRole}
+              />
+            </div>
+
             <Button
-              classname="logoutbtn"
+              className="logoutButton"
               onClick={() => {
                 this.props.clearToken();
               }}

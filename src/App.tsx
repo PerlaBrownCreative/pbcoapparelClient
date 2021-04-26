@@ -16,6 +16,7 @@ export interface AppState {
   token: string;
   username: string;
   role: string;
+  
 }
 
 class App extends React.Component<AppProps, AppState> {
@@ -40,11 +41,7 @@ class App extends React.Component<AppProps, AppState> {
     });
   };
 
-  // useEffect(() => {
-  //   if (localStorage.getItem("username")) {
-  //     setUsername(localStorage.getItem("username"));
-  //   }
-  // }, []);
+  
 
   setUsername = (username: string) => {
     localStorage.setItem("username", username);
@@ -76,6 +73,7 @@ class App extends React.Component<AppProps, AppState> {
             updateToken={this.updateToken}
             setUsername={this.setUsername}
             setRole={this.setRole}
+            username={this.state.username}
           />
           <Header />
           {this.protectedViews()}
