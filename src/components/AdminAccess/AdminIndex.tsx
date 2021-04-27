@@ -49,7 +49,7 @@ class AdminIndex extends React.Component<AdminIndexProps, AdminIndexState> {
 
   render() {
     return (
-      <div>
+      <div className="rowC">
         <AdminCreate
           token={this.props.token}
           fetchProductslogs={this.fetchProductslogs}

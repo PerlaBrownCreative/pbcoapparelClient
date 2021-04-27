@@ -11,6 +11,8 @@ import {
   Alert,
 } from "reactstrap";
 // import { IProductlogResponse } from "./Interfaces";
+import "./AdminTable.css";
+
 
 export interface AdminUpdateProductProps {
   token: string;
@@ -114,7 +116,7 @@ class AdminUpdateProduct extends React.Component<
 
     return (
       <div>
-        <Button color="danger" onClick={this.handleToggle}>
+        <Button onClick={this.handleToggle}>
           Update
         </Button>
         <Modal isOpen={!this.state.isOpen}>

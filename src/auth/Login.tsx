@@ -8,12 +8,14 @@ interface LoginProps {
   updateToken: Function;
   setUsername: Function;
   setRole: Function;
+  handleModal: Function;
 }
 
 interface LoginState {
   username: string;
   password: string;
   role: string;
+
   errors: {
     username: string;
     password: string;
@@ -28,6 +30,7 @@ export class Login extends React.Component<LoginProps, LoginState> {
       username: "",
       password: "",
       role: "",
+
       errors: {
         username: "",
         password: "",
@@ -36,6 +39,7 @@ export class Login extends React.Component<LoginProps, LoginState> {
     };
     this.state = initialState;
     this.handleChange = this.handleChange.bind(this);
+
   }
 
   handleChange = (event: any) => {
@@ -100,7 +104,12 @@ export class Login extends React.Component<LoginProps, LoginState> {
     } else {
       alert("Please ensure everything is correct");
     }
+    this.props.handleModal();
   };
+
+  
+
+  
 
   render() {
     const { errors } = this.state;

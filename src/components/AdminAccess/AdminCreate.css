@@ -1,4 +1,36 @@
 .adminform{
-    margin: auto;
+    width: 400px;
+    margin-left: 30px;    
+    padding: 30px;
+    border: lightgrey 1px solid;
+    border-radius: 20px;
+    background-color: #cbbaa5
+    ;
+    color: black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
     
 }
+
+.rowC{
+    display:flex; 
+    flex-direction:row;
+    justify-content: center;
+
+}
+
+.btn1{
+    background-color: #888367
+    !important;
+    width: 200px;
+    margin-top: 20px;
+
+}
+
+.alert.alert-info{
+    background-color: #888367;
+    border-radius: 10px;
+    border-color:   #888367;
+    color: white;
+}
+

@@ -3,6 +3,8 @@ import { Table, Col, Row, Container, Button } from "reactstrap";
 import AdminDeleteProduct from "./AdminDeleteProduct";
 import AdminUpdateProduct from "./AdminUpdateProduct";
 import { IProductlogResponse } from "./interfaces";
+import "./AdminTable.css";
+
 
 export interface AdminTableProps {
   token: string;
@@ -69,10 +71,10 @@ class AdminTable extends React.Component<AdminTableProps, AdminTableState> {
   render() {
     console.log(this.props.productslogs);
     return (
-      <div>
+      <div className="table1">
         <Container>
-          <Table>
-            <thead>
+          <Table dark>
+            <thead className="theadTop">
               <tr>
                 <th>#</th>
                 <th>Design Name</th>

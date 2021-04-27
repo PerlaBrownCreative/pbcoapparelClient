@@ -9,6 +9,7 @@ export interface SignupProps {
   updateToken: Function;
   setUsername: Function;
   setRole: Function;
+  handleModal: Function;
 }
 
 export interface SignupState {
@@ -90,7 +91,7 @@ export class Signup extends React.Component<SignupProps, SignupState> {
           let checkToken = data.sessionToken;
           this.props.setUsername(data.user.username);
           this.props.setRole(data.user.role);
-
+          this.props.handleModal();
           if (checkToken === undefined) {
             alert("Please provide info to signup");
             return;
@@ -102,6 +103,9 @@ export class Signup extends React.Component<SignupProps, SignupState> {
       alert("Please ensure everything is correct");
     }
   };
+
+
+
 
   render() {
     const { errors } = this.state;

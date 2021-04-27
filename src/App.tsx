@@ -3,12 +3,16 @@ import "./App.css";
 import Auth from "./auth/Auth";
 import Header from "./components/Header";
 import Homepage from "./components/Homepage";
-import Sitebar from "./components/Navbar";
 import Footer from "./components/Footer";
 import AdminIndex from "./components/AdminAccess/AdminIndex";
 import ProductslogCards from "./components/Productslog/ProductslogFetch";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Contact from "./components/Contact";
+import NavbarSearch from "./components/NavbarSearch"
+import UserProfile from "./components/User/UserProfile"
+import TopPromo from "./components/TopPromo";
+import ProductslogFetch1 from "./components/Productslog/ProductslogFetch1"
+import ProductsCard from "./components/Productslog/ProductsCard";
 
 export interface AppProps {}
 
@@ -63,34 +67,47 @@ class App extends React.Component<AppProps, AppState> {
     ) : null;
   };
 
+  protectedUserView = () => {
+    return localStorage.getItem("token") ? (
+      <Route exact path="/profile" 
+            component={() => (
+              <UserProfile 
+              token={this.state.token}
+              username={this.state.username}
+              role={this.state.role}
+              /> 
+              )}
+            />
+    ) : null;
+  };
+
   render() {
     return (
       <div>
         <Router>
-          <Sitebar
-            token={this.state.token}
-            clearToken={this.clearToken}
-            updateToken={this.updateToken}
-            setUsername={this.setUsername}
-            setRole={this.setRole}
-            username={this.state.username}
+          <TopPromo/>
+          <NavbarSearch
+          token={this.state.token}
+          clearToken={this.clearToken}
+          updateToken={this.updateToken}
+          setUsername={this.setUsername}
+          setRole={this.setRole}
+          username={this.state.username}
           />
+          
           <Header />
           {this.protectedViews()}
           <Switch>
             <Route
               exact
               path="/"
-              component={() => (
-                <Homepage
-                  token={this.state.token}
-                  clearToken={this.clearToken}
-                  updateToken={this.updateToken}
-                />
-              )}
+              component={ProductslogFetch1}
             />
-            <Route exact path="/store" component={ProductslogCards} />
+
+            <Route exact path="/store" component={ProductslogFetch1} />
             <Route exact path="/contact" component={Contact} />
+            {this.protectedUserView()}
+
           </Switch>
 
           <Footer />

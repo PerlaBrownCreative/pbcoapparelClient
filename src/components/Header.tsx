@@ -9,10 +9,9 @@ export interface HeaderProps {
  
 const Header: React.SFC<HeaderProps> = () => {
     return (
-      <Jumbotron
-        className="jumbotron"
+      <div className="jumbotron"
         style={{}}
-      ></Jumbotron>
+      ></div>
       
       
     );

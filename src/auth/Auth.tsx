@@ -1,7 +1,6 @@
 import React from "react";
 import { Signup } from "./Signup";
 import { Login } from "./Login";
-import "./Auth.css";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import AdminIndex from "../components/AdminAccess/AdminIndex";
 
@@ -38,10 +37,12 @@ class Auth extends React.Component<AuthProps, AuthState> {
     this.setState({ showLogin: !this.state.showLogin });
   };
 
+  
+
   render() {
     return (
       <div>
-        <Button className="loginoroutButton" onClick={this.handleModal}>
+        <Button className="loginoroutButton" onClick={this.handleModal }>
           Login or Signup
         </Button>
         <Modal isOpen={!this.state.isOpen}>
@@ -52,12 +53,14 @@ class Auth extends React.Component<AuthProps, AuthState> {
                   updateToken={this.props.updateToken}
                   setUsername={this.props.setUsername}
                   setRole={this.props.setRole}
+                  handleModal={this.handleModal}
                 />
               ) : (
                 <Login
                   updateToken={this.props.updateToken}
                   setUsername={this.props.setUsername}
                   setRole={this.props.setRole}
+                  handleModal={this.handleModal}
                 />
               )}
             </div>

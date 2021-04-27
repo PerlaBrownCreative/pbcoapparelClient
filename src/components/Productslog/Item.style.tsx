@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 
   button {
     background-color: lightgrey;
-    width: 150px;
+    width: 300px;
     margin: auto;
   }
 

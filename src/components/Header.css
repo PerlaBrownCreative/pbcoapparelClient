@@ -1,5 +1,5 @@
 .jumbotron {
-  height: 300px;
-  width: 100%;
-  background-color: black;
+  height: 740px;
+  background-image: url("../Images/header.jpg");
+  background-size: cover;
 }

@@ -1,6 +1,8 @@
 import * as React from "react";
 // import { IProductlogResponse } from "./interfaces";
 import { Table, Col, Row, Container, Button } from "reactstrap";
+import "./AdminCreate.css";
+
 
 export interface AdminDeleteProductProps {
   token: string;
@@ -37,7 +39,7 @@ class AdminDeleteProduct extends React.Component<
   render() {
     return (
       <div>
-        <Button
+        <Button className="deleteButton"
           onClick={() => {
             this.deleteProductlog();
           }}

@@ -26,6 +26,7 @@ import {
 import { Route, Link, Switch } from "react-router-dom";
 import "./Navbarstyle.css";
 import Auth from "../auth/Auth";
+import { Divider } from "@material-ui/core";
 
 export interface SitebarProps {
   clearToken: Function;
@@ -58,52 +59,21 @@ class Sitebar extends React.Component<SitebarProps, SitebarState> {
     return localStorage.getItem("token") ? `Hi ${this.props.username}!` : null;
   };
 
+  protectedUserIcon = () => {
+    return localStorage.getItem("token") ? (
+      <FaRegUserCircle className="icon" size="25px" color="grey" />
+    ) : null;
+  };
+
   render() {
     return (
-      <div>
-        <Row>
-          <Col>
-            <Alert className="topMessage">
-              FREE SHIPPING FOR US ORDERS OVER $99!
-            </Alert>
-          </Col>
-        </Row>
-
-        <Navbar className="navbar1" light expand="md">
-          <NavbarBrand href="/" className="logo">
-            PB + Co. Apparel
-          </NavbarBrand>
-          <NavbarToggler onClick={this.handleToggle} />
-          <Collapse isOpen={!this.state.isOpen} navbar>
-            <Nav className="mr-auto">
-              <FormGroup className="navform1">
-                <Label for="exampleSearch"></Label>
-                <Input
-                  type="search"
-                  name="search"
-                  id="exampleSearch"
-                  placeholder="search products"
-                />
-              </FormGroup>
-              <FaRegUserCircle
-                className="icon"
-                style={{
-                  position: "absolute",
-                  top: "43px",
-                  right: "100px",
-                }}
-                size="25px"
-                color="grey"
-              />
-              <NavItem>{this.displayName()}</NavItem>
-            </Nav>
-          </Collapse>
-        </Navbar>
-
-        <Navbar className="bottomNav" light expand="md">
-          {/* <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar> */}
-          <Nav className="bottomNavText">
+      <Navbar className="navbar1" light expand="md" >
+        <NavbarBrand href="/" className="navbarBrand mr-lg-5">
+          PB + Co. Apparel
+        </NavbarBrand>
+        <NavbarToggler onClick={this.handleToggle} />
+        <Collapse isOpen={!this.state.isOpen} navbar>
+          <Nav className="mr-auto">
             <NavItem>
               <Link to="/store">
                 <NavLink className="linkcolor">Store</NavLink>
@@ -114,25 +84,32 @@ class Sitebar extends React.Component<SitebarProps, SitebarState> {
                 <NavLink className="contactLink linkcolor">Contact</NavLink>
               </Link>
             </NavItem>
-            <div className="loginorout">
+            <NavItem>
               <Auth
                 updateToken={this.props.updateToken}
                 setUsername={this.props.setUsername}
                 setRole={this.props.setRole}
               />
-            </div>
-
-            <Button
-              className="logoutButton"
-              onClick={() => {
-                this.props.clearToken();
-              }}
-            >
-              Logout
-            </Button>
+            </NavItem>
+            <NavItem>
+              <Button
+                className="logoutButton"
+                onClick={() => {
+                  this.props.clearToken();
+                }}
+              >
+                Logout
+              </Button>
+            </NavItem>
+            <NavItem>
+              <Link to="/profile">
+                {this.protectedUserIcon()}
+                {this.displayName()}
+              </Link>
+            </NavItem>
           </Nav>
-        </Navbar>
-      </div>
+        </Collapse>
+      </Navbar>
     );
   }
 }

@@ -111,8 +111,7 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
     const { submitSuccess, loading } = this.state;
     return (
       <div className="adminform">
-        <div className={"col-md-4 form-wrapper "}>
-          <h2> Create Post </h2>
+        <h4> Create a Product </h4>
           {!submitSuccess && (
             <div className="alert alert-info" role="alert">
               Fill the form below to create a product
@@ -123,14 +122,14 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
               The form was successfully submitted!
             </div>
           )}
-          <form
+          <Form
             id={"create-post-form"}
             onSubmit={this.handleSubmit}
             noValidate={true}
           >
             <div className="form-group col-md-12">
-              <label htmlFor="design_name"> Design Name </label>
-              <input
+              <Label htmlFor="design_name"> Design Name </Label>
+              <Input
                 type="text"
                 id="design_name"
                 onChange={(e) => this.setState({ design_name: e.target.value })}
@@ -140,8 +139,8 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
               />
             </div>
             <div className="form-group col-md-12">
-              <label htmlFor="product_description"> Product Description </label>
-              <input
+              <Label htmlFor="product_description"> Product Description </Label>
+              <Input
                 type="text"
                 id="product_description"
                 onChange={(e) =>
@@ -153,8 +152,8 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
               />
             </div>
             <div className="form-group col-md-12">
-              <label htmlFor="color"> Color </label>
-              <input
+              <Label htmlFor="color"> Color </Label>
+              <Input
                 type="text"
                 id="color"
                 onChange={(e) => this.setState({ color: e.target.value })}
@@ -193,8 +192,8 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
             </div>
 
             <div className="form-group col-md-12">
-              <label htmlFor="price"> Price </label>
-              <input
+              <Label htmlFor="price"> Price </Label>
+              <Input
                 type="text"
                 id="price"
                 onChange={(e) => this.setState({ price: e.target.value })}
@@ -204,14 +203,13 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
               />
             </div>
             <div className="form-group col-md-4 pull-right">
-              <button className="btn btn-success" type="submit">
+              <Button className="btn1 " type="submit">
                 Create Product
-              </button>
+              </Button>
               {loading && <span className="fa fa-circle-o-notch fa-spin" />}
             </div>
-          </form>
+          </Form>
         </div>
-      </div>
     );
   }
 }
