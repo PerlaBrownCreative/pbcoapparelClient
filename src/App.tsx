@@ -74,7 +74,6 @@ class App extends React.Component<AppProps, AppState> {
               <UserProfile 
               token={this.state.token}
               username={this.state.username}
-              role={this.state.role}
               /> 
               )}
             />

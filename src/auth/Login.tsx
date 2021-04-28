@@ -65,11 +65,17 @@ export class Login extends React.Component<LoginProps, LoginState> {
   handleSubmit = (event: any) => {
     event.preventDefault();
     let validity = true;
+    
     Object.values(this.state.errors).forEach(
       (val) => val.length > 0 && (validity = false)
     );
+
+    if (this.state.username === "") {
+      validity = false;
+    }
     if (validity === true) {
       console.log("Registering can be done");
+      
 
       let url = "http://localhost:4000/user/login";
       fetch(url, {
@@ -93,18 +99,18 @@ export class Login extends React.Component<LoginProps, LoginState> {
           this.props.setUsername(data.user.username);
           this.props.setRole(data.user.role);
           let checkToken = data.sessionToken;
+          // this.props.handleModal();
 
           if (checkToken === undefined) {
-            alert("Please provide info to signup");
+            alert("Please provide info to login");
             return;
           } else {
-            alert("You have signed up!");
+            alert("You have logged in!");
           }
         });
     } else {
       alert("Please ensure everything is correct");
     }
-    this.props.handleModal();
   };
 
   

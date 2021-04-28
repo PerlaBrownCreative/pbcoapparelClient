@@ -8,7 +8,8 @@ function ContactForm() {
     return <p>Thanks for contacting us!</p>;
   }
   return (
-      <div>
+    <div className="outerProfile">
+    <p className="userProfileHeader">Contact Us</p>
     <Form onSubmit={handleSubmit} className="contactFrm">
     <p>We love feedback! Leave us a message and we'll email you back promptly. Have a great day!</p>
 

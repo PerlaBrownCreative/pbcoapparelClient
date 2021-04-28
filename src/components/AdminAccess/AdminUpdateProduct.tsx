@@ -10,23 +10,23 @@ import {
   ModalBody,
   Alert,
 } from "reactstrap";
-// import { IProductlogResponse } from "./Interfaces";
+import { IProductlogResponse } from "./interfaces";
 import "./AdminTable.css";
 
 
 export interface AdminUpdateProductProps {
   token: string;
   fetchProductslogs: Function;
-  productlog: any;
+  productlog: IProductlogResponse;
 }
 
 export interface AdminUpdateProductState {
-  editDesign_Name: String;
-  editProduct_Description: String;
-  editColor: String;
-  editSize: String;
-  editImage: String;
-  editPrice: String;
+  editDesign_Name: string;
+  editProduct_Description: string;
+  editColor: string;
+  editSize: string;
+  editImage: string;
+  editPrice: string;
   loading: Boolean;
   isOpen: Boolean;
 }
@@ -51,6 +51,7 @@ class AdminUpdateProduct extends React.Component<
   }
 
   handleToggle = (event: any) => {
+    event.preventDefault();
     this.setState({ isOpen: !this.state.isOpen });
   };
 
@@ -127,6 +128,7 @@ class AdminUpdateProduct extends React.Component<
                 <Label htmlFor="design_name">Edit Design Name:</Label>
                 <Input
                   name="design_name"
+                  defaultValue={this.props.productlog.design_name}
                   onChange={(e) =>
                     this.setState({ editDesign_Name: e.target.value })
                   }
@@ -138,6 +140,7 @@ class AdminUpdateProduct extends React.Component<
                 </Label>
                 <Input
                   name="product_description"
+                  defaultValue={this.props.productlog.product_description}
                   onChange={(e) =>
                     this.setState({ editProduct_Description: e.target.value })
                   }
@@ -147,6 +150,7 @@ class AdminUpdateProduct extends React.Component<
                 <Label htmlFor="color">Edit Color:</Label>
                 <Input
                   name="color"
+                  defaultValue={this.props.productlog.color}
                   onChange={(e) => this.setState({ editColor: e.target.value })}
                 />
               </FormGroup>
@@ -154,13 +158,14 @@ class AdminUpdateProduct extends React.Component<
                 <Label htmlFor="size">Edit Size:</Label>
                 <Input
                   name="size"
+                  defaultValue={this.props.productlog.size}
                   onChange={(e) => this.setState({ editSize: e.target.value })}
                 />
               </FormGroup>
 
               <FormGroup>
                 <Label htmlFor="image">Edit Image:</Label>
-                <Input type="file" name="file" onChange={this.uploadNewImage} />
+                <Input type="file" name="file"  onChange={this.uploadNewImage} />
                 {this.state.loading ? (
                   <h3>Loading...</h3>
                 ) : (
@@ -174,6 +179,7 @@ class AdminUpdateProduct extends React.Component<
                 <Label htmlFor="price">Edit Price:</Label>
                 <Input
                   name="price"
+                  defaultValue={this.props.productlog.price}
                   onChange={(e) => this.setState({ editPrice: e.target.value })}
                 />
               </FormGroup>

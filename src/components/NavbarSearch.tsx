@@ -22,11 +22,12 @@ import {
   Form,
   Row,
   Col,
+  Dropdown,
 } from "reactstrap";
 import { Route, Link, Switch } from "react-router-dom";
 import "./Navbarstyle.css";
 import Auth from "../auth/Auth";
-import { Divider } from "@material-ui/core";
+import UserDropdown from "./User/UserDropdown"
 
 export interface SitebarProps {
   clearToken: Function;
@@ -38,42 +39,52 @@ export interface SitebarProps {
 }
 
 export interface SitebarState {
-  isOpen: Boolean;
+  isOpened: Boolean;
+  dropdownOpen: Boolean;
 }
 
 class Sitebar extends React.Component<SitebarProps, SitebarState> {
   constructor(props: SitebarProps) {
     super(props);
     this.state = {
-      isOpen: true,
+      isOpened: true,
+      dropdownOpen: false,
     };
     this.handleToggle = this.handleToggle.bind(this);
   }
 
   handleToggle = (event: any) => {
     event.preventDefault();
-    this.setState({ isOpen: !this.state.isOpen });
+    this.setState({ isOpened: !this.state.isOpened });
   };
 
-  displayName = () => {
-    return localStorage.getItem("username") ? `Hi ${localStorage.getItem("username")}!` : null;
-  };
+  
 
-  protectedUserIcon = () => {
-    return localStorage.getItem("token") ? (
-      <FaRegUserCircle className="icon" size="25px" color="grey" />
-    ) : null;
-  };
+  // displayName = () => {
+  //   return localStorage.getItem("username")
+  //     ? `Hi ${localStorage.getItem("username")}!`
+  //     : null;
+  // };
+
+  // protectedUserIcon = () => {
+  //   return localStorage.getItem("token") ? (
+  //     <FaRegUserCircle
+  //       className="icon profilePic"
+  //       size="33px"
+  //       color="#f9f5f2"
+  //     />
+  //   ) : null;
+  // };
 
   render() {
     return (
-      <Navbar className="navbar1" color="dark" expand="md" >
-        <NavbarBrand href="/" className="navbarBrand mr-lg-5 barbrand">
+      <Navbar className="navbar1" expand="md">
+        <NavbarBrand href="/" className="navbarBrand">
           PB + Co. Apparel
         </NavbarBrand>
         <NavbarToggler onClick={this.handleToggle} />
-        <Collapse isOpen={!this.state.isOpen} navbar>
-          <Nav className="navinner" >
+        <Collapse isOpen={!this.state.isOpened} navbar>
+          <Nav className="navinner">
             <NavItem>
               <Link to="/store">
                 <NavLink className="linkcolor">Store</NavLink>
@@ -84,14 +95,14 @@ class Sitebar extends React.Component<SitebarProps, SitebarState> {
                 <NavLink className="contactLink linkcolor">Contact</NavLink>
               </Link>
             </NavItem>
-            <NavItem>
+            <NavItem className="modalbutton1">
               <Auth
                 updateToken={this.props.updateToken}
                 setUsername={this.props.setUsername}
                 setRole={this.props.setRole}
               />
             </NavItem>
-            <NavItem>
+            <NavItem className="modalbutton2">
               <Button
                 className="logoutButton"
                 onClick={() => {
@@ -102,10 +113,7 @@ class Sitebar extends React.Component<SitebarProps, SitebarState> {
               </Button>
             </NavItem>
             <NavItem>
-              <Link to="/profile">
-                {this.protectedUserIcon()}
-                {this.displayName()}
-              </Link>
+              <UserDropdown token={this.props.token} username={this.props.username}/>
             </NavItem>
           </Nav>
         </Collapse>

@@ -1,0 +1,22 @@
+.widthofForm{
+    width: 700px;
+    margin: auto;
+    border: lightgrey 1px solid;
+    padding: 40px;
+    margin-bottom: 100px;
+    border-radius: 20px;
+}
+
+.userProfileHeader{
+    margin: auto;
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.outerProfile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}

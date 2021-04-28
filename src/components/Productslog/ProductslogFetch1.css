@@ -26,3 +26,8 @@
 .carticon1{
     margin-right: 10px;
 }
+
+.imageCard{
+    border-radius: 40px !important;
+    padding: 5px;
+}

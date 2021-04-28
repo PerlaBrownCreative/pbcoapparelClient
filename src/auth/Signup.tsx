@@ -63,9 +63,16 @@ export class Signup extends React.Component<SignupProps, SignupState> {
   handleSubmit = (event: any) => {
     event.preventDefault();
     let validity = true;
+  
     Object.values(this.state.errors).forEach(
       (val) => val.length > 0 && (validity = false)
     );
+
+if (this.state.username === "") {
+  validity = false;
+}
+
+
     if (validity === true) {
       console.log("Registering can be done");
 
@@ -83,15 +90,15 @@ export class Signup extends React.Component<SignupProps, SignupState> {
           "Content-Type": "application/json",
         }),
       })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          console.log(data.sessionToken);
-          this.props.updateToken(data.sessionToken);
-          let checkToken = data.sessionToken;
-          this.props.setUsername(data.user.username);
-          this.props.setRole(data.user.role);
-          this.props.handleModal();
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        console.log(data.sessionToken);
+        this.props.updateToken(data.sessionToken);
+        this.props.setUsername(data.user.username);
+        this.props.setRole(data.user.role);
+        let checkToken = data.sessionToken;
+        this.props.handleModal();
           if (checkToken === undefined) {
             alert("Please provide info to signup");
             return;
