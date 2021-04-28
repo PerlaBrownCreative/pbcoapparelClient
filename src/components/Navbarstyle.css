@@ -10,18 +10,50 @@
   }
 
   .navbar1{
+      width: 100%;
+      height: 100px;
       background-color:white;
       height: 80px;
-      display: flex;
-      justify-items: center !important;
+      /* display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: auto; */
 
+  }
+
+  .navbar1 a{
+      color: white;
+      font-size: 20px;
+  }
+
+  .outerNav{
+      width: 100%;
   }
 
   .navbarBrand{
-      font-size: 20px !important;
       font-weight: bold;
-      font-optical-sizing: 100px;
+      margin-right: 500px;
   }
+
+  .navbarBrand a{
+      font-size: 30px !important;
+  }
+
+  .collapse navbar-collapse{
+      display: flex;
+      justify-content: right;
+      position: absolute;
+      margin: right;
+  }
+
+  .collapse {
+      display: flex;
+      flex-direction: column;
+      justify-content: end !important;
+     
+  }
+
+  
 
 
 

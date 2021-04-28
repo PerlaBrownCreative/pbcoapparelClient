@@ -4,7 +4,7 @@ import AdminDeleteProduct from "./AdminDeleteProduct";
 import AdminUpdateProduct from "./AdminUpdateProduct";
 import { IProductlogResponse } from "./interfaces";
 import "./AdminTable.css";
-
+import ProductslogFetch1 from "../Productslog/ProductslogFetch1"
 
 export interface AdminTableProps {
   token: string;
@@ -36,7 +36,6 @@ class AdminTable extends React.Component<AdminTableProps, AdminTableState> {
 
   productslogMapper = () => {
     return this.props.productslogs.map((productlog, index) => {
-      console.log(productlog.id);
       return (
         <tr key={index}>
           <th className="id" scope="row">
@@ -72,7 +71,7 @@ class AdminTable extends React.Component<AdminTableProps, AdminTableState> {
     console.log(this.props.productslogs);
     return (
       <div className="table1">
-        <Container>
+        <Container className="backTable">
           <Table dark>
             <thead className="theadTop">
               <tr>
@@ -87,6 +86,7 @@ class AdminTable extends React.Component<AdminTableProps, AdminTableState> {
             </thead>
 
             <tbody>{this.productslogMapper()}</tbody>
+            
           </Table>
         </Container>
       </div>

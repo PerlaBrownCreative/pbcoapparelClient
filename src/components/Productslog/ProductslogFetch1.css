@@ -4,3 +4,25 @@
     margin-bottom: 40px;
     margin-top: 50px;
 }
+
+.cardcol1{
+    width: 900px;
+    margin: auto !important;
+}
+
+.card1{
+    border-radius: 20px;
+    border-color: white !important;
+}
+
+.buyButton{
+    width: 170px;
+    text-align: center;
+    background-color: darkgrey !important;
+    border-color: white !important;
+
+}
+
+.carticon1{
+    margin-right: 10px;
+}

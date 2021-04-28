@@ -6,4 +6,5 @@ export interface IProductlogResponse {
   size: string;
   image: string;
   price: string;
+  amount: number;
 }

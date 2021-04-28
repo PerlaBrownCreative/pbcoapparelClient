@@ -56,7 +56,7 @@ class Sitebar extends React.Component<SitebarProps, SitebarState> {
   };
 
   displayName = () => {
-    return localStorage.getItem("token") ? `Hi ${this.props.username}!` : null;
+    return localStorage.getItem("username") ? `Hi ${localStorage.getItem("username")}!` : null;
   };
 
   protectedUserIcon = () => {
@@ -67,13 +67,13 @@ class Sitebar extends React.Component<SitebarProps, SitebarState> {
 
   render() {
     return (
-      <Navbar className="navbar1" light expand="md" >
-        <NavbarBrand href="/" className="navbarBrand mr-lg-5">
+      <Navbar className="navbar1" color="dark" expand="md" >
+        <NavbarBrand href="/" className="navbarBrand mr-lg-5 barbrand">
           PB + Co. Apparel
         </NavbarBrand>
         <NavbarToggler onClick={this.handleToggle} />
         <Collapse isOpen={!this.state.isOpen} navbar>
-          <Nav className="mr-auto">
+          <Nav className="navinner" >
             <NavItem>
               <Link to="/store">
                 <NavLink className="linkcolor">Store</NavLink>

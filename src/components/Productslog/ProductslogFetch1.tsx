@@ -8,6 +8,7 @@ import {
   CardSubtitle,
   Button,
   CardColumns,
+  CardDeck,
 } from "reactstrap";
 import './ProductslogFetch1.css'
 import { IProductlogResponse} from "../AdminAccess/interfaces";
@@ -44,9 +45,10 @@ componentDidMount() {
 
 
 
+
   render() {
     return (
-        <CardColumns>
+        <CardDeck className="cardcol1">
             {this.state.ProductInformation.length > 0 ? (
                 this.state.ProductInformation.map(
                     (product: IProductlogResponse) => (
@@ -55,7 +57,7 @@ componentDidMount() {
                 )
             ) : ( <></>
             )}
-</CardColumns>
+</CardDeck>
     );
   }
 }

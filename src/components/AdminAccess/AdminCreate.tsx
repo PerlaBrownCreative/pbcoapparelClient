@@ -24,6 +24,7 @@ export interface AdminCreateState {
   size: string;
   image: string;
   price: string;
+  amount: number;
   [key: string]: any;
   values: AdminCreateProps[];
   submitSuccess: boolean;
@@ -41,6 +42,7 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
       size: "",
       image: "",
       price: "",
+      amount: 0,
       values: [],
       loading: false,
       submitSuccess: false,
