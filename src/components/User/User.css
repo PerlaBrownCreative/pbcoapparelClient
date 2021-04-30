@@ -3,8 +3,10 @@
     margin: auto;
     border: lightgrey 1px solid;
     padding: 40px;
-    margin-bottom: 100px;
     border-radius: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 .userProfileHeader{
@@ -19,4 +21,18 @@
     flex-direction: column;
     justify-content: center;
 
+}
+
+.UserDisplay{
+    width: 400px;
+    margin: auto;
+    border: #888367 3px solid !important;
+    padding: 20px;
+    border-radius: 30px !important;
+}
+
+.photoProfile{
+    border-radius: 100px;
+    margin: auto;
+    width: 200px !important;
 }

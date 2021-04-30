@@ -1,5 +1,7 @@
 import React from "react";
 import { Jumbotron, Navbar, Container, NavbarBrand } from "reactstrap";
+import "./Footer.css"
+
 
 export interface FooterProps {}
 
@@ -12,10 +14,11 @@ class Footer extends React.Component<FooterProps, FooterState> {
   }
   render() {
     return (
-      <div>
-        <Navbar color="dark" className="footerBottom">
-          <p>PB + Co. Apparel</p>
-        </Navbar>
+      <div className="jumbotronFooter"
+        style={{}}>
+          
+          <h5 className="copyright">&#169;Perla Brown Creative 2021</h5>
+
       </div>
     );
   }

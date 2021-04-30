@@ -10,6 +10,9 @@ import {
   Row,
 } from "reactstrap";
 import "./User.css";
+import { IProductlogResponse } from "../AdminAccess/interfaces";
+import UserProfileDisplay from "./UserProfileDisplay"
+
 
 export interface UserProfileProps {
   token: string;
@@ -24,7 +27,14 @@ export interface UserProfileState {
   state: string;
   zip_code: string;
   mobile_number: string;
+  image: string;
   step: number;
+  loading: boolean;
+  submitSuccess: boolean;
+  // productslogs: IProductlogResponse[];
+
+
+
 }
 
 class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
@@ -38,10 +48,19 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
       state: "",
       zip_code: "",
       mobile_number: "",
+      image: "",
       step: 0,
+      loading: false,
+      submitSuccess: false,
+
+
+
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+
   }
+
+
 
   // Proceed to next step
   nextStep = () => {
@@ -57,6 +76,25 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
     this.setState({
       step: step - 1,
     });
+  };
+
+  uploadImage = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "pbcoApparel");
+    this.setState({ loading: !this.state.loading });
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/dnesqlk9j/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const file = await res.json();
+    this.setState({ image: file.secure_url });
+    console.log(file.secure_url);
+    this.setState({ loading: !this.state.loading });
   };
 
   handleSubmit = (event: React.FormEvent) => {
@@ -76,6 +114,7 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
           state: this.state.state,
           zip_code: this.state.zip_code,
           mobile_number: this.state.mobile_number,
+          image: this.state.image
         },
       }),
       headers: new Headers({
@@ -94,18 +133,32 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
           state: "",
           zip_code: "",
           mobile_number: "",
+          image: "",
         });
+        // this.fetchProductslogs();
       })
       .catch((err) => console.log(err));
   };
 
   render() {
+    const { submitSuccess, loading } = this.state;
+
     return (
       <div className="outerProfile">
         <p className="userProfileHeader">User Profile</p>
+        
 
         <Form onSubmit={this.handleSubmit} className="widthofForm">
-          <div>Circle</div>
+        {!submitSuccess && (
+            <div className="alert alert-info text-center" role="alert">
+              Fill the form below to create your profile! 
+            </div>
+          )}
+          {submitSuccess && (
+            <div className="alert alert-info text-center" role="alert">
+              The form was successfully submitted!
+            </div>
+          )}
           <Row form>
             <Col md={6}>
               <FormGroup>
@@ -141,26 +194,6 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
           <Row form>
             <Col md={6}>
               <FormGroup>
-                <Label for="exampleAddress2">Address 2</Label>
-                <Input
-                  type="text"
-                  name="address2"
-                  id="exampleAddress2"
-                  placeholder="Apartment, studio, or floor"
-                />
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="mobile_number">Phone Number</Label>
-                <Input type="text" name="mobile_number" placeholder="" 
-                onChange={(e) => this.setState({ mobile_number: e.target.value })}/>
-              </FormGroup>
-            </Col>
-          </Row>
-          <Row form>
-            <Col md={6}>
-              <FormGroup>
                 <Label for="exampleCity">City</Label>
                 <Input type="text" name="city" id="exampleCity" 
                 onChange={(e) => this.setState({ city: e.target.value })}/>
@@ -181,10 +214,41 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
               </FormGroup>
             </Col>
           </Row>
+          <Row form>
+          <Col md={6}>
+              <FormGroup>
+                <Label for="mobile_number">Phone Number</Label>
+                <Input type="text" name="mobile_number" placeholder="" 
+                onChange={(e) => this.setState({ mobile_number: e.target.value })}/>
+              </FormGroup>
+            </Col>
+            <Col md={6}>
+              <FormGroup>
+              <Label htmlFor="image">
+                Upload Profile Picture
+              </Label>
+              <Input
+                type="file"
+                name="file"
+                className="choosefilebtn"
+                onChange={this.uploadImage}
+              />
+              {loading ? (
+                <h3>Loading...</h3>
+              ) : (
+                <img src={this.state.image} style={{ width: "100px" }} />
+              )}
+              </FormGroup>
+            </Col>
+            
+          </Row>
 
           <Button>Submit</Button>
         </Form>
+
+        <UserProfileDisplay token={this.props.token} username={this.props.username}/>
       </div>
+      
     );
   }
 }

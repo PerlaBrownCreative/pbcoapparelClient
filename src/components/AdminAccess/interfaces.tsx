@@ -8,3 +8,16 @@ export interface IProductlogResponse {
   price: string;
   amount: number;
 }
+
+export interface IShippingResponse {
+  id: number;
+  first_name: string, 
+  last_name: string,
+  address: string,
+  city: string,
+  state: string,
+  zip_code: string,
+  mobile_number: string,
+  image: string,
+
+}

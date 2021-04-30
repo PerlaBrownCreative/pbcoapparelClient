@@ -113,14 +113,14 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
     const { submitSuccess, loading } = this.state;
     return (
       <div className="adminform">
-        <h4> Create a Product </h4>
+        <div className="createHeader"> Create a Product </div>
           {!submitSuccess && (
-            <div className="alert alert-info" role="alert">
+            <div className="alert alert-info text-center" role="alert">
               Fill the form below to create a product
             </div>
           )}
           {submitSuccess && (
-            <div className="alert alert-info" role="alert">
+            <div className="alert alert-info text-center" role="alert">
               The form was successfully submitted!
             </div>
           )}
@@ -178,7 +178,7 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
 
             <div className="form-group col-md-12">
               <Label htmlFor="image">
-                <h6>Upload Image:</h6>
+                Upload Image
               </Label>
               <Input
                 type="file"

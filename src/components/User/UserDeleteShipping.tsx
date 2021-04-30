@@ -1,0 +1,55 @@
+import React from 'react'
+import { Table, Col, Row, Container, Button } from "reactstrap";
+
+
+export interface UserDeleteShippingProps {
+    token: string;
+    fetchShippinglogs: Function;
+    shippinglog: number;
+    
+}
+ 
+export interface UserDeleteShippingState {
+    
+}
+ 
+class UserDeleteShipping extends React.Component<UserDeleteShippingProps, UserDeleteShippingState> {
+    constructor(props: UserDeleteShippingProps) {
+        super(props);
+        this.state = {
+            
+        };
+    }
+
+    deleteProductlog = () => {
+        console.log(this.props.shippinglog);
+        let token = this.props.token
+          ? this.props.token
+          : localStorage.getItem("token");
+        fetch(`http://localhost:4000/productslog/delete/${this.props.shippinglog}`, {
+          method: "DELETE",
+          headers: new Headers({
+            "Content-Type": "application/json",
+            Authorization: token ? token : "",
+          }),
+        }).then(() => this.props.fetchShippinglogs());
+      };
+
+
+    render() { 
+        return ( 
+            <div>
+                <Button className="deleteButton"
+          onClick={() => {
+            this.deleteProductlog();
+          }}
+        >
+          Delete
+        </Button>
+
+            </div>
+         );
+    }
+}
+ 
+export default UserDeleteShipping;

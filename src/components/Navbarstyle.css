@@ -24,6 +24,13 @@
   .navbar1 a{
       color: white;
       font-size: 20px;
+      text-decoration: none;
+  }
+
+  .navbar1 a:hover{
+    text-decoration: none;
+    color: lightgrey;
+
   }
 
   .outerNav{
@@ -51,6 +58,7 @@ display: flex;
 
 }
 
+
 .modalbutton1{
     margin-right: 15px;
 }
@@ -75,6 +83,40 @@ background-color: rgb(41, 58, 45) !important;
 
 
 }
+
+.dropdown-menu{
+    background-color: rgb(41, 58, 45) !important;
+    border-radius: 20px !important;
+    width: 200px;
+    height: 50px;
+    font-size: 10px;
+}
+
+.dropdown-item a{
+    font-size: 16px;
+
+}
+
+.dropdown-item a:hover{
+    text-decoration: none;
+    color: white
+
+}
+
+.dropdown-item:hover{
+    text-decoration: none;
+    background-color: rgb(41, 58, 45) !important;
+    border-radius: 40px;
+    color: lightgrey;
+
+}
+
+.button{
+    text-decoration: none;
+
+
+}
+
 
 
 

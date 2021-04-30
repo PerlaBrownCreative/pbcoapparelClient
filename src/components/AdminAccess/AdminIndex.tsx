@@ -3,6 +3,7 @@ import AdminCreate from "./AdminCreate";
 import AdminTable from "./AdminTable";
 import { IProductlogResponse } from "./interfaces";
 import AdminDeleteProduct from "./AdminDeleteProduct";
+import UserProfile from "../User/UserProfile";
 
 export interface AdminIndexProps {
   token: string;
@@ -46,6 +47,8 @@ class AdminIndex extends React.Component<AdminIndexProps, AdminIndexState> {
         });
       });
   };
+
+  
 
   render() {
     return (
