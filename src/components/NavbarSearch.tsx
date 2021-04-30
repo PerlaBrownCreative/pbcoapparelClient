@@ -90,6 +90,11 @@ class Sitebar extends React.Component<SitebarProps, SitebarState> {
                 <NavLink className="linkcolor">Store</NavLink>
               </Link>
             </NavItem>
+            <NavItem>
+              <Link to="/store1">
+                <NavLink className="linkcolor">Store 1</NavLink>
+              </Link>
+            </NavItem>
             <NavItem className="linkcolor">
               <Link to="/contact">
                 <NavLink className="contactLink linkcolor">Contact</NavLink>

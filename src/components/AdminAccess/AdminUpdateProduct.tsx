@@ -13,7 +13,6 @@ import {
 import { IProductlogResponse } from "./interfaces";
 import "./AdminTable.css";
 
-
 export interface AdminUpdateProductProps {
   token: string;
   fetchProductslogs: Function;
@@ -27,6 +26,7 @@ export interface AdminUpdateProductState {
   editSize: string;
   editImage: string;
   editPrice: string;
+  editAmount: number;
   loading: Boolean;
   isOpen: Boolean;
 }
@@ -38,12 +38,13 @@ class AdminUpdateProduct extends React.Component<
   constructor(props: AdminUpdateProductProps) {
     super(props);
     this.state = {
-      editDesign_Name: "",
-      editProduct_Description: "",
-      editColor: "",
-      editSize: "",
-      editImage: "",
-      editPrice: "",
+      editDesign_Name: this.props.productlog.design_name,
+      editProduct_Description: this.props.productlog.product_description,
+      editColor: this.props.productlog.color,
+      editSize: this.props.productlog.size,
+      editImage: this.props.productlog.image,
+      editPrice: this.props.productlog.price,
+      editAmount: this.props.productlog.amount,
       loading: false,
       isOpen: true,
     };
@@ -72,6 +73,7 @@ class AdminUpdateProduct extends React.Component<
             size: this.state.editSize,
             image: this.state.editImage,
             price: this.state.editPrice,
+            amount: this.state.editAmount,
           },
         }),
         headers: new Headers({
@@ -80,14 +82,6 @@ class AdminUpdateProduct extends React.Component<
         }),
       }
     ).then((data) => {
-      this.setState({
-        editDesign_Name: "",
-        editProduct_Description: "",
-        editColor: "",
-        editSize: "",
-        editImage: "",
-        editPrice: "",
-      });
       this.props.fetchProductslogs();
       this.handleToggle(event);
     });
@@ -112,14 +106,12 @@ class AdminUpdateProduct extends React.Component<
     this.setState({ loading: !this.state.loading });
   };
 
-  render() {
+render() {
     console.log(this.props.productlog);
 
     return (
       <div>
-        <Button onClick={this.handleToggle}>
-          Update
-        </Button>
+        <Button onClick={this.handleToggle}>Update</Button>
         <Modal isOpen={!this.state.isOpen}>
           <ModalHeader close={!this.state.isOpen}>Update Product</ModalHeader>
           <ModalBody>
@@ -165,7 +157,7 @@ class AdminUpdateProduct extends React.Component<
 
               <FormGroup>
                 <Label htmlFor="image">Edit Image:</Label>
-                <Input type="file" name="file"  onChange={this.uploadNewImage} />
+                <Input type="file" name="file" onChange={this.uploadNewImage} />
                 {this.state.loading ? (
                   <h3>Loading...</h3>
                 ) : (
@@ -181,6 +173,14 @@ class AdminUpdateProduct extends React.Component<
                   name="price"
                   defaultValue={this.props.productlog.price}
                   onChange={(e) => this.setState({ editPrice: e.target.value })}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label htmlFor="amount">Edit Amount:</Label>
+                <Input
+                  name="amount"
+                  defaultValue={this.props.productlog.amount}
+                  onChange={(e) => this.setState({ editAmount: +e.target.value })}
                 />
               </FormGroup>
               <Button

@@ -6,6 +6,7 @@ import {
   import "./User.css";
   import { IShippingResponse } from "../AdminAccess/interfaces";
   import UserProfileDisplayCard from "../User/UserProfileDisplayCard"
+  import UserProfile from "./UserProfile"
 
 
 
@@ -57,6 +58,7 @@ class UserProfileDisplay extends React.Component<UserProfileDisplayProps, UserPr
     render() { 
         return ( 
             <div>
+                <UserProfile token={this.props.token} fetchShippinglogs={this.fetchShippinglogs} username={this.props.username}/>
                 <UserProfileDisplayCard shippinglog={this.state.shippinglog} token={this.props.token} fetchShippinglogs={this.fetchShippinglogs} username={this.props.username}/>
     </div>
          );

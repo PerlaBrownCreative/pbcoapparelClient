@@ -13,6 +13,8 @@ import UserProfile from "./components/User/UserProfile"
 import TopPromo from "./components/TopPromo";
 import ProductslogFetch1 from "./components/Productslog/ProductslogFetch1"
 import ProductsCard from "./components/Productslog/ProductsCard";
+import UserProfileDisplay from "./components/User/UserProfileDisplay"
+import ProductslogFetch from "./components/Productslog/ProductslogFetch"
 
 export interface AppProps {}
 
@@ -69,16 +71,13 @@ class App extends React.Component<AppProps, AppState> {
 
   protectedUserView = () => {
     return localStorage.getItem("token") ? (
-      <Route exact path="/profile" 
-            component={() => (
-              <UserProfile 
+      <UserProfileDisplay 
               token={this.state.token}
               username={this.state.username}
               /> 
-              )}
-            />
-    ) : null;
-  };
+              
+              ) : null;
+            };
 
   render() {
     return (
@@ -104,6 +103,7 @@ class App extends React.Component<AppProps, AppState> {
             />
 
             <Route exact path="/store" component={ProductslogFetch1} />
+            <Route exact path="/store1" component={ProductslogFetch} />
             <Route exact path="/contact" component={Contact} />
             {this.protectedUserView()}
 

@@ -86,6 +86,7 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
           size: this.state.size,
           image: this.state.image,
           price: this.state.price,
+          amount: this.state.amount,
         },
       }),
       headers: new Headers({
@@ -103,6 +104,7 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
           size: "",
           image: "",
           price: "",
+          amount: 0,
         });
         this.props.fetchProductslogs();
       })
@@ -134,6 +136,8 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
               <Input
                 type="text"
                 id="design_name"
+                value={this.state.design_name}
+
                 onChange={(e) => this.setState({ design_name: e.target.value })}
                 name="design_name"
                 className="form-control"
@@ -144,6 +148,8 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
               <Label htmlFor="product_description"> Product Description </Label>
               <Input
                 type="text"
+                value={this.state.product_description}
+
                 id="product_description"
                 onChange={(e) =>
                   this.setState({ product_description: e.target.value })
@@ -158,6 +164,8 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
               <Input
                 type="text"
                 id="color"
+                value={this.state.color}
+
                 onChange={(e) => this.setState({ color: e.target.value })}
                 name="color"
                 className="form-control"
@@ -169,6 +177,8 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
               <input
                 type="text"
                 id="size"
+                value={this.state.size}
+
                 onChange={(e) => this.setState({ size: e.target.value })}
                 name="size"
                 className="form-control"
@@ -198,8 +208,23 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
               <Input
                 type="text"
                 id="price"
+                value={this.state.price}
+
                 onChange={(e) => this.setState({ price: e.target.value })}
                 name="price"
+                className="form-control"
+                placeholder=""
+              />
+            </div>
+            <div className="form-group col-md-12">
+              <Label htmlFor="amount"> Amount </Label>
+              <Input
+                type="number"
+                id="amount"
+                value={this.state.amount}
+
+                onChange={(e) => this.setState({ amount: +e.target.value })}
+                name="amount"
                 className="form-control"
                 placeholder=""
               />

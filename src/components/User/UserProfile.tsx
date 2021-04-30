@@ -17,6 +17,7 @@ import UserProfileDisplay from "./UserProfileDisplay"
 export interface UserProfileProps {
   token: string;
   username: string;
+  fetchShippinglogs: Function;
 }
 
 export interface UserProfileState {
@@ -31,6 +32,8 @@ export interface UserProfileState {
   step: number;
   loading: boolean;
   submitSuccess: boolean;
+  input: string;
+
   // productslogs: IProductlogResponse[];
 
 
@@ -52,6 +55,7 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
       step: 0,
       loading: false,
       submitSuccess: false,
+      input: "",
 
 
 
@@ -60,23 +64,6 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
 
   }
 
-
-
-  // Proceed to next step
-  nextStep = () => {
-    const { step } = this.state;
-    this.setState({
-      step: step + 1,
-    });
-  };
-
-  // Go back to prev step
-  prevStep = () => {
-    const { step } = this.state;
-    this.setState({
-      step: step - 1,
-    });
-  };
 
   uploadImage = async (e) => {
     const files = e.target.files;
@@ -135,10 +122,12 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
           mobile_number: "",
           image: "",
         });
-        // this.fetchProductslogs();
-      })
+  this.props.fetchShippinglogs();      
+})
       .catch((err) => console.log(err));
   };
+
+  
 
   render() {
     const { submitSuccess, loading } = this.state;
@@ -166,6 +155,7 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
                 <Input
                   type="text"
                   name="first_name"
+                  value={this.state.first_name}
                   placeholder=""
                   onChange={(e) =>
                     this.setState({ first_name: e.target.value })
@@ -176,7 +166,9 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
             <Col md={6}>
               <FormGroup>
                 <Label for="last_name">Last Name</Label>
-                <Input type="text" name="last_name" placeholder="" 
+                <Input type="text" 
+                value={this.state.last_name}
+                name="last_name" placeholder="" 
                 onChange={(e) => this.setState({ last_name: e.target.value })}/>
               </FormGroup>
             </Col>
@@ -187,6 +179,7 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
               type="text"
               name="address"
               id="address"
+              value={this.state.address}
               placeholder="1234 Main St"
               onChange={(e) => this.setState({ address: e.target.value })}
             />
@@ -195,21 +188,27 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
             <Col md={6}>
               <FormGroup>
                 <Label for="exampleCity">City</Label>
-                <Input type="text" name="city" id="exampleCity" 
+                <Input type="text" 
+                value={this.state.city}
+                name="city" id="exampleCity" 
                 onChange={(e) => this.setState({ city: e.target.value })}/>
               </FormGroup>
             </Col>
             <Col md={4}>
               <FormGroup>
                 <Label for="exampleState">State</Label>
-                <Input type="text" name="state" id="exampleState" 
+                <Input type="text" 
+                value={this.state.state}
+                name="state" id="exampleState" 
                 onChange={(e) => this.setState({ state: e.target.value })}/>
               </FormGroup>
             </Col>
             <Col md={2}>
               <FormGroup>
                 <Label for="exampleZip">Zip</Label>
-                <Input type="text" name="zip" id="exampleZip" 
+                <Input type="text" 
+                value={this.state.zip_code}
+                name="zip" id="exampleZip" 
                 onChange={(e) => this.setState({ zip_code: e.target.value })}/>
               </FormGroup>
             </Col>
@@ -218,7 +217,9 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
           <Col md={6}>
               <FormGroup>
                 <Label for="mobile_number">Phone Number</Label>
-                <Input type="text" name="mobile_number" placeholder="" 
+                <Input type="text" 
+                value={this.state.mobile_number}
+                name="mobile_number" placeholder="" 
                 onChange={(e) => this.setState({ mobile_number: e.target.value })}/>
               </FormGroup>
             </Col>
@@ -243,10 +244,10 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
             
           </Row>
 
-          <Button>Submit</Button>
+          <Button type="submit">Submit</Button>
+          {loading && <span className="fa fa-circle-o-notch fa-spin" />}
         </Form>
-
-        <UserProfileDisplay token={this.props.token} username={this.props.username}/>
+        
       </div>
       
     );

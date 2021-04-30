@@ -50,6 +50,7 @@ class AdminTable extends React.Component<AdminTableProps, AdminTableState> {
             <img src={productlog.image} style={{ width: "100px" }}></img>
           </td>
           <td>{productlog.price}</td>
+          <td>{productlog.amount}</td>
           <td>
             <AdminUpdateProduct
               productlog={productlog}
@@ -82,6 +83,7 @@ class AdminTable extends React.Component<AdminTableProps, AdminTableState> {
                 <th>Size</th>
                 <th>Image</th>
                 <th>Price</th>
+                <th>Amount</th>
               </tr>
             </thead>
 

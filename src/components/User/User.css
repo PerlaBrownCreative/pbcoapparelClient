@@ -36,3 +36,8 @@
     margin: auto;
     width: 200px !important;
 }
+
+.card-subtitle{
+    font-weight: bold !important;
+}
+
