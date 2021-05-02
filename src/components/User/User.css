@@ -26,8 +26,8 @@
 .UserDisplay{
     width: 400px;
     margin: auto;
-    border: #888367 3px solid !important;
-    padding: 20px;
+    border: #34495E  2px solid !important;
+    padding: 10px;
     border-radius: 30px !important;
 }
 
@@ -40,4 +40,28 @@
 .card-subtitle{
     font-weight: bold !important;
 }
+
+.deleteButton1{
+    background-color: 
+    #736e50!important;
+    width: 80px;
+    margin-bottom: 20px;
+}
+
+.buttonsuser{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.header5{
+    font-weight: bold;
+}
+
+.updateButton {
+    background-color: #34495E  !important;
+}
+
+
+
 

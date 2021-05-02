@@ -1,4 +1,15 @@
 import React from "react";
+import {
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormText,
+  Col,
+  Row,
+} from "reactstrap";
+import "./Auth.css"
 
 const Regex = RegExp(
   /^\s?[A-Z0–9]+[A-Z0–9._+-]{0,}@[A-Z0–9._+-]+\.[A-Z0–9]{2,4}\s?$/i
@@ -39,7 +50,6 @@ export class Login extends React.Component<LoginProps, LoginState> {
     };
     this.state = initialState;
     this.handleChange = this.handleChange.bind(this);
-
   }
 
   handleChange = (event: any) => {
@@ -65,7 +75,7 @@ export class Login extends React.Component<LoginProps, LoginState> {
   handleSubmit = (event: any) => {
     event.preventDefault();
     let validity = true;
-    
+
     Object.values(this.state.errors).forEach(
       (val) => val.length > 0 && (validity = false)
     );
@@ -75,7 +85,6 @@ export class Login extends React.Component<LoginProps, LoginState> {
     }
     if (validity === true) {
       console.log("Registering can be done");
-      
 
       let url = "http://localhost:4000/user/login";
       fetch(url, {
@@ -113,45 +122,38 @@ export class Login extends React.Component<LoginProps, LoginState> {
     }
   };
 
-  
-
-  
-
   render() {
     const { errors } = this.state;
     return (
       <div className="wrapper">
-        <div className="form-wrapper">
-          <h2>Login</h2>
-          <form onSubmit={this.handleSubmit} noValidate>
-            <div className="username">
-              <label htmlFor="username">Username</label>
-              <input
-                type="username"
-                name="username"
-                onChange={this.handleChange}
-              />
-              {errors.username.length > 0 && (
-                <span style={{ color: "red" }}>{errors.username}</span>
-              )}
-            </div>
-            <div className="password">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                name="password"
-                onChange={this.handleChange}
-              />
-              {errors.password.length > 0 && (
-                <span style={{ color: "red" }}>{errors.password}</span>
-              )}
-            </div>
+        <h2 className="headertitle">Login</h2>
+        <Form onSubmit={this.handleSubmit} noValidate>
+          <FormGroup>
+            <Label for="username">Username</Label>
+            <Input type="text" name="username" onChange={this.handleChange} />
+            {errors.username.length > 0 && (
+              <span style={{ color: "red" }}>{errors.username}</span>
+            )}
+          </FormGroup>
+          <FormGroup>
+            <Label for="examplePassword">Password</Label>
+            <Input
+              type="password"
+              name="password"
+              id="examplePassword"
+              placeholder=""
+              onChange={this.handleChange}
+            />{errors.password.length > 0 && (
+              <span style={{ color: "red" }}>{errors.password}</span>
+            )}
+          </FormGroup>
 
-            <div className="submit">
-              <button>Login</button>
-            </div>
-          </form>
-        </div>
+          
+
+          <div className="submit">
+            <Button className="loginoroutbutton">Login</Button>
+          </div>
+        </Form>
       </div>
     );
   }

@@ -1,5 +1,15 @@
 import React from "react";
 import "./SignupStyle.css";
+import {
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormText,
+  Col,
+  Row,
+} from "reactstrap";
 
 const Regex = RegExp(
   /^\s?[A-Z0–9]+[A-Z0–9._+-]{0,}@[A-Z0–9._+-]+\.[A-Z0–9]{2,4}\s?$/i
@@ -118,38 +128,35 @@ if (this.state.username === "") {
     const { errors } = this.state;
     return (
       <div className="wrapper">
-        <div className="form-wrapper">
-          <h2>Sign Up</h2>
-          <form onSubmit={this.handleSubmit} noValidate>
-            <div className="username">
-              <label htmlFor="username">Username</label>
-              <input
-                type="username"
-                name="username"
-                onChange={this.handleChange}
-              />
-              {errors.username.length > 0 && (
-                <span style={{ color: "red" }}>{errors.username}</span>
-              )}
-            </div>
-            <div className="password">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                name="password"
-                onChange={this.handleChange}
-              />
-              {errors.password.length > 0 && (
-                <span style={{ color: "red" }}>{errors.password}</span>
-              )}
-            </div>
+        <h2 className="headertitle">Signup</h2>
+        <Form onSubmit={this.handleSubmit} noValidate>
+          <FormGroup>
+            <Label for="username">Username</Label>
+            <Input type="text" name="username" onChange={this.handleChange} />
+            {errors.username.length > 0 && (
+              <span style={{ color: "red" }}>{errors.username}</span>
+            )}
+          </FormGroup>
 
-            <div className="submit">
-              <button>Signup</button>
-            </div>
-          </form>
+
+            <FormGroup>
+            <Label for="examplePassword">Password</Label>
+            <Input
+              type="password"
+              name="password"
+              id="examplePassword"
+              placeholder=""
+              onChange={this.handleChange}
+            />{errors.password.length > 0 && (
+              <span style={{ color: "red" }}>{errors.password}</span>
+            )}
+          </FormGroup>
+
+          <div className="submit">
+            <Button className="loginoroutbutton">Signup</Button>
+          </div>
+          </Form>
         </div>
-      </div>
     );
   }
 }

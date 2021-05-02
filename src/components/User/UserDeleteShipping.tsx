@@ -20,6 +20,8 @@ class UserDeleteShipping extends React.Component<UserDeleteShippingProps, UserDe
         this.state = {
             
         };
+        this.deleteShippinglog = this.deleteShippinglog.bind(this);
+
     }
 
     deleteShippinglog= () => {
@@ -36,6 +38,8 @@ class UserDeleteShipping extends React.Component<UserDeleteShippingProps, UserDe
         }).then(() => this.props.fetchShippinglogs());
       };
 
+
+      
 
     render() { 
         return ( 

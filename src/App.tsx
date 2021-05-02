@@ -16,6 +16,7 @@ import ProductsCard from "./components/Productslog/ProductsCard";
 import UserProfileDisplay from "./components/User/UserProfileDisplay";
 import ProductslogFetch2 from "./components/Productslog/ProductsFetch2";
 import FullProductView from "./components/Productslog/FullProductView"
+import UserProfileDisplayCard from "./components/User/UserProfileDisplayCard";
 
 export interface AppProps {}
 
@@ -97,6 +98,7 @@ class App extends React.Component<AppProps, AppState> {
             <Route exact path="/product_view" component={FullProductView} />
             <Route exact path="/store" component={ProductslogFetch2} />
             <Route exact path="/contact" component={Contact} />
+
 
             {this.protectedUserView()}
           </Switch>

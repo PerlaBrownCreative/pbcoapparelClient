@@ -69,25 +69,28 @@ class UserProfileDisplayCard extends React.Component<
               style={{ width: "100px" }}
             ></img>
             <CardBody className="text-center">
-              Address:
+              <div className="header5">Address:</div>
               <CardText>
                 {shippinglog.address}
                 <br />
                 {shippinglog.city}, {shippinglog.state}, {shippinglog.zip_code}
               </CardText>
-              Mobile Number:
+              <div className="header5">Mobile Number:</div>
               <CardText>{shippinglog.mobile_number}</CardText>
-            
+           <div className="buttonsuser">
+           <UserProfileUpdate
+            shippinglog={shippinglog}
+            token={this.props.token}
+            fetchShippinglogs={this.props.fetchShippinglogs}
+          />
           <UserDeleteShipping
             shippinglog={shippinglog.id}
             token={this.props.token}
             fetchShippinglogs={this.props.fetchShippinglogs}
           />
-          <UserProfileUpdate
-            shippinglog={shippinglog}
-            token={this.props.token}
-            fetchShippinglogs={this.props.fetchShippinglogs}
-          /></CardBody>
+          
+          </div>
+          </CardBody>
           </Card>
         </div>
       );

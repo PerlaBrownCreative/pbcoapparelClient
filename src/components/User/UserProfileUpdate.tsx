@@ -116,9 +116,9 @@ class UserProfileUpdate extends React.Component<
 
 
   render() {
-    return <div><Button onClick={this.handleToggle}>Update</Button>
+    return <div><Button className="updateButton" onClick={this.handleToggle}>Update</Button>
     <Modal isOpen={!this.state.isOpen}>
-      <ModalHeader close={!this.state.isOpen}>Update Profile</ModalHeader>
+      <ModalHeader  close={!this.state.isOpen}>Update Profile</ModalHeader>
       <ModalBody>
         <Form onSubmit={this.profileUpdate}>
           <FormGroup>

@@ -3,6 +3,9 @@ import { Signup } from "./Signup";
 import { Login } from "./Login";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import AdminIndex from "../components/AdminAccess/AdminIndex";
+import "./Auth.css"
+import { FaTimes } from "react-icons/fa";
+
 
 export interface AuthProps {
   updateToken: Function;
@@ -64,21 +67,30 @@ class Auth extends React.Component<AuthProps, AuthState> {
                 />
               )}
             </div>
-            <div>
+            <div className="authbutton">
+              {/* Already a member? */}
               {this.state.showLogin ? (
-                <button className="Authbutton" onClick={this.handleToggle}>
-                  Login
-                </button>
+                `Already a member?`
               ) : (
-                <button className="Authbutton" onClick={this.handleToggle}>
+                `Not a member yet?`
+              )}
+            </div>{" "}
+            <div className="authbutton">
+              {/* Already a member? */}
+              {this.state.showLogin ? (
+                <Button className="Authbutton bg-transparent border-0"  onClick={this.handleToggle}>
+                  Login
+                </Button>
+              ) : (
+                <Button className="Authbutton bg-transparent border-0"  onClick={this.handleToggle}>
                   Signup
-                </button>
+                </Button>
               )}
             </div>{" "}
           </ModalBody>
           <ModalFooter>
-            <Button color="secondary" onClick={this.handleModal}>
-              Cancel
+            <Button className="clickoutbtn" onClick={this.handleModal}>
+            <FaTimes/>
             </Button>
           </ModalFooter>
         </Modal>

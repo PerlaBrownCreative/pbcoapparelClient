@@ -12,6 +12,8 @@ import {
 import "./User.css";
 import { IProductlogResponse } from "../AdminAccess/interfaces";
 import UserProfileDisplay from "./UserProfileDisplay"
+import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
+
 
 
 export interface UserProfileProps {
@@ -33,6 +35,7 @@ export interface UserProfileState {
   loading: boolean;
   submitSuccess: boolean;
   input: string;
+  show: boolean;
 
   // productslogs: IProductlogResponse[];
 
@@ -56,11 +59,13 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
       loading: false,
       submitSuccess: false,
       input: "",
+      show: true,
 
 
 
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+
 
   }
 
@@ -83,6 +88,8 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
     console.log(file.secure_url);
     this.setState({ loading: !this.state.loading });
   };
+
+
 
   handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -121,11 +128,15 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
           zip_code: "",
           mobile_number: "",
           image: "",
+          show: !this.state.show
         });
-  this.props.fetchShippinglogs();      
+  this.props.fetchShippinglogs();
+      
 })
       .catch((err) => console.log(err));
   };
+
+  
 
   
 

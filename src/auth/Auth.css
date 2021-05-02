@@ -1,0 +1,46 @@
+.authbutton{
+    display: flex;
+    justify-content: center;
+}
+
+.Authbutton{
+    color: #34495e !important;
+    font-weight: bold !important;
+    font-size: 20px !important;
+    border-style: hidden !important;
+    box-shadow: none !important;
+}
+
+
+.wrapper{
+    width: 400px;
+    margin: auto;
+    margin-bottom: 30px;
+    padding-top: 20px;
+
+}
+
+.headertitle{
+font-weight: bold;
+color: #34495e;
+text-align: center;
+}
+
+.authbutton{
+    color: #34495e !important;
+}
+
+.clickoutbtn{
+    background-color: #34495e !important;
+}
+
+.loginoroutbutton{
+    width: 140px;
+    background-color: #34495e !important;
+    margin-top: 17px;
+}
+
+.submit{
+    display: flex;
+    justify-content: center;
+}
