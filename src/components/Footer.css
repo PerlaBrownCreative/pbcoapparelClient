@@ -1,6 +1,6 @@
 .jumbotronFooter {
     height: 380px;
-    background-image: url("../Images/footer.jpg");
+    background-image: url("../Images/footer2.jpg");
     position: relative;
     
   }
@@ -8,7 +8,7 @@
   .copyright{
       position: absolute;
       top: 320px;
-      left: 650px;
+      left: 724px;
       color: white;
     font-size: 20px !important;
 

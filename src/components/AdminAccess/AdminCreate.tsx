@@ -23,8 +23,7 @@ export interface AdminCreateState {
   color: string;
   size: string;
   image: string;
-  price: string;
-  amount: number;
+  price: number;
   [key: string]: any;
   values: AdminCreateProps[];
   submitSuccess: boolean;
@@ -41,8 +40,7 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
       color: "",
       size: "",
       image: "",
-      price: "",
-      amount: 0,
+      price: 0,
       values: [],
       loading: false,
       submitSuccess: false,
@@ -86,7 +84,6 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
           size: this.state.size,
           image: this.state.image,
           price: this.state.price,
-          amount: this.state.amount,
         },
       }),
       headers: new Headers({
@@ -103,8 +100,7 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
           color: "",
           size: "",
           image: "",
-          price: "",
-          amount: 0,
+          price: 0,
         });
         this.props.fetchProductslogs();
       })
@@ -210,25 +206,13 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
                 id="price"
                 value={this.state.price}
 
-                onChange={(e) => this.setState({ price: e.target.value })}
+                onChange={(e) => this.setState({ price: +e.target.value })}
                 name="price"
                 className="form-control"
                 placeholder=""
               />
             </div>
-            <div className="form-group col-md-12">
-              <Label htmlFor="amount"> Amount </Label>
-              <Input
-                type="number"
-                id="amount"
-                value={this.state.amount}
-
-                onChange={(e) => this.setState({ amount: +e.target.value })}
-                name="amount"
-                className="form-control"
-                placeholder=""
-              />
-            </div>
+          
             <div className="form-group col-md-4 pull-right">
               <Button className="btn1 " type="submit">
                 Create Product

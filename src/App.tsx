@@ -8,13 +8,14 @@ import AdminIndex from "./components/AdminAccess/AdminIndex";
 import ProductslogCards from "./components/Productslog/ProductslogFetch";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Contact from "./components/Contact";
-import NavbarSearch from "./components/NavbarSearch"
-import UserProfile from "./components/User/UserProfile"
+import NavbarSearch from "./components/NavbarSearch";
+import UserProfile from "./components/User/UserProfile";
 import TopPromo from "./components/TopPromo";
-import ProductslogFetch1 from "./components/Productslog/ProductslogFetch1"
+import ProductslogFetch1 from "./components/Productslog/ProductslogFetch1";
 import ProductsCard from "./components/Productslog/ProductsCard";
-import UserProfileDisplay from "./components/User/UserProfileDisplay"
-import ProductslogFetch from "./components/Productslog/ProductslogFetch"
+import UserProfileDisplay from "./components/User/UserProfileDisplay";
+import ProductslogFetch2 from "./components/Productslog/ProductsFetch2";
+import FullProductView from "./components/Productslog/FullProductView"
 
 export interface AppProps {}
 
@@ -22,7 +23,6 @@ export interface AppState {
   token: string;
   username: string;
   role: string;
-  
 }
 
 class App extends React.Component<AppProps, AppState> {
@@ -47,8 +47,6 @@ class App extends React.Component<AppProps, AppState> {
     });
   };
 
-  
-
   setUsername = (username: string) => {
     localStorage.setItem("username", username);
     this.setState({ username: username });
@@ -71,42 +69,36 @@ class App extends React.Component<AppProps, AppState> {
 
   protectedUserView = () => {
     return localStorage.getItem("token") ? (
-      <UserProfileDisplay 
-              token={this.state.token}
-              username={this.state.username}
-              /> 
-              
-              ) : null;
-            };
+      <UserProfileDisplay
+        token={this.state.token}
+        username={this.state.username}
+      />
+    ) : null;
+  };
 
   render() {
     return (
       <div>
         <Router>
-          <TopPromo/>
+          <TopPromo />
           <NavbarSearch
-          token={this.state.token}
-          clearToken={this.clearToken}
-          updateToken={this.updateToken}
-          setUsername={this.setUsername}
-          setRole={this.setRole}
-          username={this.state.username}
+            token={this.state.token}
+            clearToken={this.clearToken}
+            updateToken={this.updateToken}
+            setUsername={this.setUsername}
+            setRole={this.setRole}
+            username={this.state.username}
           />
-          
+
           <Header />
           {this.protectedViews()}
           <Switch>
-            <Route
-              exact
-              path="/"
-              component={ProductslogFetch1}
-            />
-
-            <Route exact path="/store" component={ProductslogFetch1} />
-            <Route exact path="/store1" component={ProductslogFetch} />
+            <Route exact path="/" component={ProductslogFetch2} />
+            <Route exact path="/product_view" component={FullProductView} />
+            <Route exact path="/store" component={ProductslogFetch2} />
             <Route exact path="/contact" component={Contact} />
-            {this.protectedUserView()}
 
+            {this.protectedUserView()}
           </Switch>
 
           <Footer />

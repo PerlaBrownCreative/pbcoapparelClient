@@ -18,8 +18,9 @@
 .buyButton{
     width: 170px;
     text-align: center;
-    background-color: darkgrey !important;
+    background-color: #34495E  !important;
     border-color: white !important;
+    border-radius: 10px !important;
 
 }
 
@@ -30,4 +31,8 @@
 .imageCard{
     border-radius: 40px !important;
     padding: 5px;
+}
+
+.productLink{
+    text-decoration: none;
 }

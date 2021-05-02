@@ -27,7 +27,7 @@ import {
 import { Route, Link, Switch } from "react-router-dom";
 import "./Navbarstyle.css";
 import Auth from "../auth/Auth";
-import UserDropdown from "./User/UserDropdown"
+import UserDropdown from "./User/UserDropdown";
 
 export interface SitebarProps {
   clearToken: Function;
@@ -58,8 +58,6 @@ class Sitebar extends React.Component<SitebarProps, SitebarState> {
     this.setState({ isOpened: !this.state.isOpened });
   };
 
-  
-
   // displayName = () => {
   //   return localStorage.getItem("username")
   //     ? `Hi ${localStorage.getItem("username")}!`
@@ -76,6 +74,16 @@ class Sitebar extends React.Component<SitebarProps, SitebarState> {
   //   ) : null;
   // };
 
+  displayUser = () => {
+    return localStorage.getItem("token") && localStorage.getItem("username") ? (
+      <UserDropdown token={this.props.token} username={this.props.username} />
+    ) : <Auth
+    updateToken={this.props.updateToken}
+    setUsername={this.props.setUsername}
+    setRole={this.props.setRole}
+  />;
+  };
+
   render() {
     return (
       <Navbar className="navbar1" expand="md">
@@ -90,22 +98,17 @@ class Sitebar extends React.Component<SitebarProps, SitebarState> {
                 <NavLink className="linkcolor">Store</NavLink>
               </Link>
             </NavItem>
-            <NavItem>
-              <Link to="/store1">
-                <NavLink className="linkcolor">Store 1</NavLink>
-              </Link>
-            </NavItem>
+
             <NavItem className="linkcolor">
               <Link to="/contact">
                 <NavLink className="contactLink linkcolor">Contact</NavLink>
               </Link>
             </NavItem>
             <NavItem className="modalbutton1">
-              <Auth
-                updateToken={this.props.updateToken}
-                setUsername={this.props.setUsername}
-                setRole={this.props.setRole}
-              />
+              
+             {this.displayUser()}
+
+
             </NavItem>
             <NavItem className="modalbutton2">
               <Button
@@ -117,9 +120,7 @@ class Sitebar extends React.Component<SitebarProps, SitebarState> {
                 Logout
               </Button>
             </NavItem>
-            <NavItem>
-              <UserDropdown token={this.props.token} username={this.props.username}/>
-            </NavItem>
+            
           </Nav>
         </Collapse>
       </Navbar>

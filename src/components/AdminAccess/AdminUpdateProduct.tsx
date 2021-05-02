@@ -25,8 +25,7 @@ export interface AdminUpdateProductState {
   editColor: string;
   editSize: string;
   editImage: string;
-  editPrice: string;
-  editAmount: number;
+  // editPrice: number;
   loading: Boolean;
   isOpen: Boolean;
 }
@@ -43,8 +42,7 @@ class AdminUpdateProduct extends React.Component<
       editColor: this.props.productlog.color,
       editSize: this.props.productlog.size,
       editImage: this.props.productlog.image,
-      editPrice: this.props.productlog.price,
-      editAmount: this.props.productlog.amount,
+      // editPrice: this.props.productlog.price[0],
       loading: false,
       isOpen: true,
     };
@@ -72,8 +70,7 @@ class AdminUpdateProduct extends React.Component<
             color: this.state.editColor,
             size: this.state.editSize,
             image: this.state.editImage,
-            price: this.state.editPrice,
-            amount: this.state.editAmount,
+            // price: this.state.editPrice,
           },
         }),
         headers: new Headers({
@@ -167,22 +164,15 @@ render() {
                   />
                 )}
               </FormGroup>
-              <FormGroup>
+              {/* <FormGroup>
                 <Label htmlFor="price">Edit Price:</Label>
                 <Input
                   name="price"
                   defaultValue={this.props.productlog.price}
-                  onChange={(e) => this.setState({ editPrice: e.target.value })}
+                  onChange={(e) => this.setState({ editPrice: +e.target.value })}
                 />
-              </FormGroup>
-              <FormGroup>
-                <Label htmlFor="amount">Edit Amount:</Label>
-                <Input
-                  name="amount"
-                  defaultValue={this.props.productlog.amount}
-                  onChange={(e) => this.setState({ editAmount: +e.target.value })}
-                />
-              </FormGroup>
+              </FormGroup> */}
+             
               <Button
                 className="modaleditbtn"
                 type="submit"
