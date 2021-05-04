@@ -105,14 +105,22 @@ const ProductslogCards: React.SFC<CartItemProps> = (props) => {
           <Grid container spacing={3}>
             {data?.map((item) => (
               <Grid item key={item.id} xs={12} sm={4}>
-                <Switch>
+                
+                
                 <Item2 item={item} handleAddToCart={handleAddToCart} />
-                <FullProductView
+                
+                {/* <Route exact path="/product_view" 
+                component={() => (<FullProductView
                   item={item}
                   handleAddToCart={handleAddToCart}
-                />
-              </Switch></Grid>
+                />)} /> */}
+
+             </Grid>
             ))}
+
+
+
+
           </Grid>
         
       </Wrapper>

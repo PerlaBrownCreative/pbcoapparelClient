@@ -98,9 +98,11 @@ class App extends React.Component<AppProps, AppState> {
             <Route exact path="/product_view" component={FullProductView} />
             <Route exact path="/store" component={ProductslogFetch2} />
             <Route exact path="/contact" component={Contact} />
+            <Route exact path="/profile" component={() => this.protectedUserView()} />
 
 
-            {this.protectedUserView()}
+
+            
           </Switch>
 
           <Footer />

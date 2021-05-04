@@ -7,6 +7,7 @@ export interface UserDeleteShippingProps {
     token: string;
     fetchShippinglogs: Function;
     shippinglog: number;
+    handleshow: Function;
     
 }
  
@@ -35,7 +36,11 @@ class UserDeleteShipping extends React.Component<UserDeleteShippingProps, UserDe
             "Content-Type": "application/json",
             Authorization: token ? token : "",
           }),
-        }).then(() => this.props.fetchShippinglogs());
+        }).then(() => {this.props.fetchShippinglogs()
+         this.props.handleshow();
+        }
+        );
+
       };
 
 

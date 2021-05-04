@@ -21,7 +21,8 @@ export interface UserProfileDisplayProps {
 }
 
 export interface UserProfileDisplayState {
-  shippinglog: IShippingResponse[];
+  shippinglog: IShippingResponse;
+  show: boolean,
 
 }
 
@@ -32,10 +33,12 @@ class UserProfileDisplay extends React.Component<
   constructor(props: UserProfileDisplayProps) {
     super(props);
     this.state = {
-      shippinglog: [],
+      shippinglog: {id: 0, mobile_number: "", first_name: "", last_name: "", address: "", city: "", state: "", zip_code: "", image: ""},
+      show: true,
     };
     this.fetchShippinglogs = this.fetchShippinglogs.bind(this);
-    this.changeViews = this.changeViews.bind(this);
+    // this.changeViews = this.changeViews.bind(this);
+    this.handleshow = this.handleshow.bind(this)
   }
 
   componentDidMount() {
@@ -56,33 +59,39 @@ class UserProfileDisplay extends React.Component<
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        if (data !== null){
         this.setState({
           shippinglog: data,
-        });
+          show: false,
+        });}
         console.log(this.state.shippinglog)
         // localStorage.setItem("address", JSON.stringify(data[0].address))
       });
   };
 
+handleshow(){
+    this.setState({show: !this.state.show})
+}
 
 
 
 
-  changeViews = (e: any) => {
-      e.preventDefault();
-    return this.state.shippinglog ? (
-        <UserProfileDisplayCard
-        shippinglog={this.state.shippinglog}
-        token={this.props.token}
-        fetchShippinglogs={this.fetchShippinglogs}
-        username={this.props.username}
-      />
-    ) : (<UserProfile
-    token={this.props.token}
-    fetchShippinglogs={this.fetchShippinglogs}
-    username={this.props.username}
-  /> );
-};
+
+//   changeViews = (e: any) => {
+//       e.preventDefault();
+//     return this.state.shippinglog ? (
+//         <UserProfileDisplayCard
+//         shippinglog={this.state.shippinglog}
+//         token={this.props.token}
+//         fetchShippinglogs={this.fetchShippinglogs}
+//         username={this.props.username}
+//       />
+//     ) : (<UserProfile
+//     token={this.props.token}
+//     fetchShippinglogs={this.fetchShippinglogs}
+//     username={this.props.username}
+//   /> );
+// };
 
 
 
@@ -91,21 +100,26 @@ class UserProfileDisplay extends React.Component<
   render() {
     return (
       <div>
-        <UserProfile
+
+
+        { this.state.show ? <UserProfile
           token={this.props.token}
           fetchShippinglogs={this.fetchShippinglogs}
           username={this.props.username}
-        />
+          handleshow={this.handleshow}
+        /> :
         <UserProfileDisplayCard
           shippinglog={this.state.shippinglog}
           token={this.props.token}
           fetchShippinglogs={this.fetchShippinglogs}
           username={this.props.username}
-        />
+          handleshow={this.handleshow}
+
+        />}
 
 
 
-        {this.changeViews}
+       
       </div>
     );
   }

@@ -20,6 +20,7 @@ export interface UserProfileProps {
   token: string;
   username: string;
   fetchShippinglogs: Function;
+  handleshow: Function;
 }
 
 export interface UserProfileState {
@@ -131,6 +132,7 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
           show: !this.state.show
         });
   this.props.fetchShippinglogs();
+  this.props.handleshow();
       
 })
       .catch((err) => console.log(err));
@@ -255,7 +257,7 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
             
           </Row>
 
-          <Button type="submit">Submit</Button>
+          <Button className="submitProfile" type="submit">Submit</Button>
           {loading && <span className="fa fa-circle-o-notch fa-spin" />}
         </Form>
         
