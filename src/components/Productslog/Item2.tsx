@@ -95,7 +95,7 @@ class Item2 extends React.Component<Item2Props, Item2State> {
       <div>
         <>
             <Card className="card1 text-center" outline color="none">
-              <Link to="/product_view">
+              <Link to={`/product_view/${this.props.item.id}`}>
                 <CardImg
                   top
                   width="100%"
@@ -129,10 +129,10 @@ class Item2 extends React.Component<Item2Props, Item2State> {
 
             
 
-                    <Route exact path="/product_view" 
+                    {/* <Route exact path="/product_view" 
                 component={() => (<FullProductView
                 
-                />)} />
+                />)} /> */}
 
               
            

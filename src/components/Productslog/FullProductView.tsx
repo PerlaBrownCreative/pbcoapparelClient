@@ -9,7 +9,7 @@ import {
   Button,
 } from "reactstrap";
 import { CartItemType } from "./ProductsFetch2";
-import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Link, Switch, Route, withRouter, RouteComponentProps } from "react-router-dom";
 
 // type Props = {
 //   item: CartItemType;
@@ -38,7 +38,7 @@ import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 
 // export default Item;
 
-export interface FullProductViewProps {
+export interface FullProductViewProps extends RouteComponentProps<any>{
 //   item: CartItemType;
 //   handleAddToCart: (clickedItem: CartItemType) => void;
 }
@@ -53,6 +53,15 @@ class FullProductView extends React.Component<
     super(props);
     this.state = {};
   }
+
+  componentDidMount() {
+      const id= this.props.match.params.id
+      alert(id)
+  }
+  
+
+
+
   render() {
     // console.log(this.props.item);
     // console.log(this.props.handleAddToCart);
@@ -82,4 +91,4 @@ class FullProductView extends React.Component<
   }
 }
 
-export default FullProductView;
+export default withRouter(FullProductView);
