@@ -9,41 +9,23 @@ import {
   Button,
 } from "reactstrap";
 import { CartItemType } from "./ProductsFetch2";
-import { BrowserRouter as Router, Link, Switch, Route, withRouter, RouteComponentProps } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Link,
+  Switch,
+  Route,
+  withRouter,
+  RouteComponentProps,
+} from "react-router-dom";
 
-// type Props = {
-//   item: CartItemType;
-//   handleAddToCart: (clickedItem: CartItemType) => void;
-// };
-
-// console.log(Item)
-
-// const Item: React.FC<Props> = ({ item, handleAddToCart }) => (
-
-//   <Card>
-//     <CardImg top width="100%" src="/assets/318x180.svg" alt="Card image cap" />
-//     <CardBody>
-//       {/* <CardTitle tag="h5">{props.item.design_name}</CardTitle> */}
-//       <CardSubtitle tag="h6" className="mb-2 text-muted">
-//         Card subtitle
-//       </CardSubtitle>
-//       <CardText>
-//         Some quick example text to build on the card title and make up the bulk
-//         of the card's content.
-//       </CardText>
-//       <Button>Button</Button>
-//     </CardBody>
-//   </Card>
-// );
-
-// export default Item;
-
-export interface FullProductViewProps extends RouteComponentProps<any>{
-//   item: CartItemType;
-//   handleAddToCart: (clickedItem: CartItemType) => void;
+export interface FullProductViewProps extends RouteComponentProps<any> {
+  //   item: CartItemType;
+  //   handleAddToCart: (clickedItem: CartItemType) => void;
 }
 
-export interface FullProductViewState {}
+export interface FullProductViewState {
+  fullview: CartItemType;
+}
 
 class FullProductView extends React.Component<
   FullProductViewProps,
@@ -51,33 +33,62 @@ class FullProductView extends React.Component<
 > {
   constructor(props: FullProductViewProps) {
     super(props);
-    this.state = {};
+    this.state = {
+      fullview: {
+        id: 0,
+        design_name: "",
+        product_description: "",
+        color: "",
+        size: "",
+        image: "",
+        price: 0,
+        amount: 0,
+      },
+    };
+    this.fetchSingleView = this.fetchSingleView.bind(this);
+
   }
 
   componentDidMount() {
-      const id= this.props.match.params.id
-      alert(id)
+    this.fetchSingleView();
   }
-  
 
-
+  fetchSingleView = () => {
+    const id = this.props.match.params.id;
+    fetch(`http://localhost:4000/productslog/${id}`, {
+      method: "GET",
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        if (data !== null) {
+          this.setState({
+            fullview: data[0],
+          });
+        }
+        console.log(this.state.fullview);
+      });
+  };
 
   render() {
-    // console.log(this.props.item);
-    // console.log(this.props.handleAddToCart);
+    console.log(this.state.fullview.design_name);
+
     return (
-      <div><h1>Hello</h1>
+      <div>
+        <h1>Hello</h1>
         <Card>
           <CardImg
             top
             width="100%"
-            src="/assets/318x180.svg"
+            src={this.state.fullview.image}
             alt="Card image cap"
           />
           <CardBody>
             {/* <CardTitle tag="h5">{props.item.design_name}</CardTitle> */}
             <CardSubtitle tag="h6" className="mb-2 text-muted">
-              Card subtitle
             </CardSubtitle>
             <CardText>
               Some quick example text to build on the card title and make up the

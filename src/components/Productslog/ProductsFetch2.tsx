@@ -26,7 +26,7 @@ export type CartItemType = {
   design_name: string;
   product_description: string;
   color: string;
-  size: number;
+  size: string;
   image: string;
   price: number;
   amount: number;
@@ -44,7 +44,6 @@ const ProductslogCards: React.SFC<CartItemProps> = (props) => {
     getProducts
   );
 
-  console.log(data);
 
   const getTotalItems = (items: CartItemType[]) =>
     items.reduce((ack: number, item) => ack + item.amount, 0);
