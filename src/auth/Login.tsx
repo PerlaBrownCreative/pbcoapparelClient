@@ -9,7 +9,7 @@ import {
   Col,
   Row,
 } from "reactstrap";
-import "./Auth.css"
+import "./Auth.css";
 
 const Regex = RegExp(
   /^\s?[A-Z0–9]+[A-Z0–9._+-]{0,}@[A-Z0–9._+-]+\.[A-Z0–9]{2,4}\s?$/i
@@ -104,6 +104,13 @@ export class Login extends React.Component<LoginProps, LoginState> {
         .then((data) => {
           console.log(data);
           console.log(data.sessionToken);
+          let dataUser = data;
+          if (dataUser === undefined) {
+            alert("You need to signup.");
+            return;
+          } else {
+            alert("You have signed up");
+          }
           this.props.updateToken(data.sessionToken);
           this.props.setUsername(data.user.username);
           this.props.setRole(data.user.role);
@@ -121,9 +128,6 @@ export class Login extends React.Component<LoginProps, LoginState> {
       alert("Please ensure everything is correct");
     }
   };
-
-
-  
 
   render() {
     const { errors } = this.state;
@@ -146,12 +150,11 @@ export class Login extends React.Component<LoginProps, LoginState> {
               id="examplePassword"
               placeholder=""
               onChange={this.handleChange}
-            />{errors.password.length > 0 && (
+            />
+            {errors.password.length > 0 && (
               <span style={{ color: "red" }}>{errors.password}</span>
             )}
           </FormGroup>
-
-          
 
           <div className="submit">
             <Button className="loginoroutbutton">Login</Button>

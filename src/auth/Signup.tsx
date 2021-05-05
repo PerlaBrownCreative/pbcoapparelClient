@@ -102,8 +102,10 @@ if (this.state.username === "") {
       })
       .then((response) => response.json())
       .then((data) => {
+        // if (data !== null) 
         console.log(data);
         console.log(data.sessionToken);
+        console.log(data.user.username);
         this.props.updateToken(data.sessionToken);
         this.props.setUsername(data.user.username);
         this.props.setRole(data.user.role);
@@ -120,8 +122,6 @@ if (this.state.username === "") {
       alert("Please ensure everything is correct");
     }
   };
-
-
 
 
   render() {

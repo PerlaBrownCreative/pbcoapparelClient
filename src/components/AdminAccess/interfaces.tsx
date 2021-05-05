@@ -21,3 +21,10 @@ export interface IShippingResponse {
   image: string,
 
 }
+
+export interface IReviewsResponse {
+  id: number;
+  rate: number;
+  review: string;
+  
+}

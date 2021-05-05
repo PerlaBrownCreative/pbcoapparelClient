@@ -7,6 +7,9 @@ import {
   CardTitle,
   CardSubtitle,
   Button,
+  Col,
+  Container, 
+  Row,
 } from "reactstrap";
 import { CartItemType } from "./ProductsFetch2";
 import {
@@ -17,6 +20,8 @@ import {
   withRouter,
   RouteComponentProps,
 } from "react-router-dom";
+import "./FullProductView.css";
+import ReviewsCreate from "../Reviews/ReviewsCreate";
 
 export interface FullProductViewProps extends RouteComponentProps<any> {
   //   item: CartItemType;
@@ -77,26 +82,31 @@ class FullProductView extends React.Component<
     console.log(this.state.fullview.design_name);
 
     return (
-      <div>
-        <h1>Hello</h1>
-        <Card>
-          <CardImg
-            top
+      <div >
+        <Container className="fullviewscreen">
+            <Row >
+            <Col>
+          <img className="fullimage"
             width="100%"
             src={this.state.fullview.image}
             alt="Card image cap"
           />
-          <CardBody>
-            {/* <CardTitle tag="h5">{props.item.design_name}</CardTitle> */}
-            <CardSubtitle tag="h6" className="mb-2 text-muted">
-            </CardSubtitle>
-            <CardText>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </CardText>
-            <Button>Button</Button>
-          </CardBody>
-        </Card>
+          </Col>
+          <Col className="text-center">
+          
+              <h2>{this.state.fullview.design_name}</h2>
+              <div className="productinfofull">
+              <br/>Type: {this.state.fullview.product_description}
+              <br/>Color: {this.state.fullview.color}
+              <br/>Size: {this.state.fullview.size}
+              <br/>Price: ${this.state.fullview.price}
+            </div>
+          </Col>
+          </Row>
+          </Container>
+
+        
+
       </div>
     );
   }
