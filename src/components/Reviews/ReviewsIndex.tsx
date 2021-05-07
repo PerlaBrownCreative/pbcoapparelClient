@@ -1,31 +1,33 @@
-import React from 'react'
-import { IReviewsResponse } from '../AdminAccess/interfaces';
+import React from "react";
+import { IReviewsResponse } from "../AdminAccess/interfaces";
+import ReviewsCreate from "../Reviews/ReviewsCreate";
+import ReviewsDisplay from "../Reviews/ReviewsDisplay";
 
 export interface ReviewsIndexProps {
-    token: string,
+  token: string;
+  username: string;
 }
- 
+
 export interface ReviewsIndexState {
-    reviews: IReviewsResponse[]
-    
-
+  reviews: IReviewsResponse[];
+  show: boolean;
 }
 
+class ReviewsIndex extends React.Component<
+  ReviewsIndexProps,
+  ReviewsIndexState
+> {
+  constructor(props: ReviewsIndexProps) {
+    super(props);
+    this.state = {
+      reviews: [],
+      show: true,
+    };
+    this.fetchReviews = this.fetchReviews.bind(this);
+    this.handleShow = this.handleShow.bind(this);
+  }
 
- 
-class ReviewsIndex extends React.Component<ReviewsIndexProps, ReviewsIndexState> {
-    constructor(props: ReviewsIndexProps) {
-        super(props);
-        this.state = {
-            reviews: [],
-           
-        };
-        this.fetchReviews = this.fetchReviews.bind(this);
-
-    }
-
-
-componentDidMount() {
+  componentDidMount() {
     this.fetchReviews();
   }
 
@@ -49,21 +51,37 @@ componentDidMount() {
       });
   };
 
+  protectedUserView = () => {
+    return localStorage.getItem("token") ? (
+      <ReviewsCreate
+          fetchReviews={this.fetchReviews}
+          token={this.props.token}
+          username={this.props.username}
+        />
+    ) : null;
+  };
+
+  handleShow(){
+    this.setState({show: !this.state.show})
+  }
 
 
+  render() {
+    return (
+      <div>
 
-
-
-
-    render() { 
-        return ( 
-            <div>
-
-
-
-            </div>
-         );
-    }
+        
+        {this.protectedUserView()}
+        
+        <ReviewsDisplay
+          reviews={this.state.reviews}
+          fetchReviews={this.fetchReviews}
+          token={this.props.token}
+          username={this.props.username}
+        />
+      </div>
+    );
+  }
 }
- 
+
 export default ReviewsIndex;

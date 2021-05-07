@@ -78,9 +78,9 @@ class UserDropdown extends React.Component<
           <DropdownToggle className="outerBoth" caret>
             {this.protectedUserIcon()}
             {this.displayName()}
-            <DropdownMenu>
+            <DropdownMenu className="dropMenu">
                 <DropdownItem>
-              <Link to="/profile">Create/Update Profile</Link>
+              <Link className="updateProfile" to="/profile">Create/Update Profile</Link>
               </DropdownItem>
             </DropdownMenu>
           </DropdownToggle>

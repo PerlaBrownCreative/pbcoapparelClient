@@ -77,11 +77,13 @@ class Sitebar extends React.Component<SitebarProps, SitebarState> {
   displayUser = () => {
     return localStorage.getItem("token") && localStorage.getItem("username") ? (
       <UserDropdown token={this.props.token} username={this.props.username} />
-    ) : <Auth
-    updateToken={this.props.updateToken}
-    setUsername={this.props.setUsername}
-    setRole={this.props.setRole}
-  />;
+    ) : (
+      <Auth
+        updateToken={this.props.updateToken}
+        setUsername={this.props.setUsername}
+        setRole={this.props.setRole}
+      />
+    );
   };
 
   render() {
@@ -104,12 +106,12 @@ class Sitebar extends React.Component<SitebarProps, SitebarState> {
                 <NavLink className="contactLink linkcolor">Contact</NavLink>
               </Link>
             </NavItem>
-            <NavItem className="modalbutton1">
-              
-             {this.displayUser()}
-
-
+            <NavItem className="linkcolor">
+              <Link to="/reviews">
+                <NavLink className="contactLink linkcolor">Reviews</NavLink>
+              </Link>
             </NavItem>
+            <NavItem className="modalbutton1">{this.displayUser()}</NavItem>
             <NavItem className="modalbutton2">
               <Button
                 className="logoutButton"
@@ -120,7 +122,6 @@ class Sitebar extends React.Component<SitebarProps, SitebarState> {
                 Logout
               </Button>
             </NavItem>
-            
           </Nav>
         </Collapse>
       </Navbar>

@@ -26,6 +26,8 @@
 
 .carticon1{
     margin-right: 10px;
+    color: black !important;
+    position: absolute !important;
 }
 
 .imageCard{

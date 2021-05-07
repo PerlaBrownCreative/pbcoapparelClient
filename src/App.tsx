@@ -17,6 +17,7 @@ import UserProfileDisplay from "./components/User/UserProfileDisplay";
 import ProductslogFetch2 from "./components/Productslog/ProductsFetch2";
 import FullProductView from "./components/Productslog/FullProductView"
 import UserProfileDisplayCard from "./components/User/UserProfileDisplayCard";
+import ReviewsIndex from "./components/Reviews/ReviewsIndex"
 
 export interface AppProps {}
 
@@ -99,11 +100,15 @@ class App extends React.Component<AppProps, AppState> {
             <Route exact path="/store" component={ProductslogFetch2} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/profile" component={() => this.protectedUserView()} />
+            <Route exact path="/reviews" component={() => <ReviewsIndex token={this.state.token} username={this.state.username}/> }  />
+
 
 
 
             
           </Switch>
+
+                  
 
           <Footer />
         </Router>

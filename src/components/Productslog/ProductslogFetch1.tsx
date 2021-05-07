@@ -48,6 +48,7 @@ componentDidMount() {
 
   render() {
     return (
+      
         <CardDeck className="cardcol1">
             {this.state.ProductInformation.length > 0 ? (
                 this.state.ProductInformation.map(

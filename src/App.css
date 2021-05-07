@@ -71,3 +71,38 @@
   margin: auto;
 }
 
+.reviewdisplay{
+  width: 500px;
+  height: 90px;
+  border: lightgrey 1px solid !important;
+  margin: auto;
+  padding: 10px;
+  border-radius: 20px;
+  margin-top: 20px;
+  
+  
+}
+
+.topreview{
+  margin-top: 40px;
+}
+
+.backbtn{
+  width: 80px;
+  height: 36px;
+  border-radius: 8px;
+  border: none;
+  background-color: #34495E;
+  color: white;
+  margin-right: 20px;
+}
+
+.nextbtn{
+  width: 80px;
+  height: 36px;
+  border-radius: 8px;
+  border: none;
+  background-color: #34495E;
+  color: white;
+}
+

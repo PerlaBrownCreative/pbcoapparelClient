@@ -66,9 +66,7 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
 
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-
-
-  }
+}
 
 
   uploadImage = async (e) => {
