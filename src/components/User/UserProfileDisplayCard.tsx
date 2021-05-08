@@ -18,11 +18,13 @@ export interface UserProfileDisplayCardProps {
   shippinglog: IShippingResponse;
   username: string;
   handleshow: Function;
+  // image: string;
 }
 
 export interface UserProfileDisplayCardState {
   updateActive: Boolean;
   ShippinglogToUpdate: {};
+  image: string
 }
 
 class UserProfileDisplayCard extends React.Component<
@@ -34,6 +36,7 @@ class UserProfileDisplayCard extends React.Component<
     this.state = {
       updateActive: false,
       ShippinglogToUpdate: {},
+      image: "",
     };
   }
 
@@ -50,6 +53,8 @@ class UserProfileDisplayCard extends React.Component<
       ? `${localStorage.getItem("username")}`
       : null;
   };
+
+  
 
 
   protectedUserViewProfile = () => {

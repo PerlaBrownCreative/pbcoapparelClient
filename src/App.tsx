@@ -20,10 +20,13 @@ import UserProfileDisplayCard from "./components/User/UserProfileDisplayCard";
 import ReviewsIndex from "./components/Reviews/ReviewsIndex"
 import ReviewsFetchAllDisplay from "./components/Reviews/ReviewsFetchAllDisplay";
 import ReviewsFetchAllIndex from "./components/Reviews/ReviewsFetchAllIndex";
+import {IShippingResponse} from "./components/AdminAccess/interfaces"
 
 export interface AppProps {}
 
 export interface AppState {
+  // shippinglog: IShippingResponse;
+
   token: string;
   username: string;
   role: string;
@@ -33,6 +36,7 @@ class App extends React.Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
     this.state = {
+      // shippinglog: {id: 0, mobile_number: "", first_name: "", last_name: "", address: "", city: "", state: "", zip_code: "", image: ""},
       token: "",
       username: "",
       role: "",
@@ -50,6 +54,36 @@ class App extends React.Component<AppProps, AppState> {
       token: "",
     });
   };
+
+
+  // fetchShippinglogs = () => {
+  //   let token = this.state.token
+  //     ? this.state.token
+  //     : localStorage.getItem("token");
+  //   fetch("http://localhost:4000/shipping/", {
+  //     method: "GET",
+  //     headers: new Headers({
+  //       "Content-Type": "application/json",
+  //       Authorization: token ? token : "",
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       if (data !== null){
+  //       this.setState({
+  //         shippinglog: data,
+  //       });}
+  //       console.log(this.state.shippinglog)
+  //       // console.log(localStorage.setItem("image", JSON.stringify(data[0].image)))
+  //     });
+  // };
+
+  // componentDidMount() {
+  //   this.fetchShippinglogs();
+    
+  // }
+  
 
   setUsername = (username: string) => {
     localStorage.setItem("username", username);

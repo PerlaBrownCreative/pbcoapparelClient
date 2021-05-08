@@ -73,6 +73,11 @@ handleshow(){
     this.setState({show: !this.state.show})
 }
 
+// setImage = (image: string) => {
+//   localStorage.setItem("image", image);
+//   this.setState({ image: image });
+// };
+
 
 
   render() {

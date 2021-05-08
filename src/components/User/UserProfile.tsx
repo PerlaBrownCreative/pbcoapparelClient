@@ -21,6 +21,7 @@ export interface UserProfileProps {
   username: string;
   fetchShippinglogs: Function;
   handleshow: Function;
+  // image: string;
 }
 
 export interface UserProfileState {
@@ -39,9 +40,6 @@ export interface UserProfileState {
   show: boolean;
 
   // productslogs: IProductlogResponse[];
-
-
-
 }
 
 class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
@@ -61,10 +59,7 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
       submitSuccess: false,
       input: "",
       show: true,
-
-
-
-    };
+};
     this.handleSubmit = this.handleSubmit.bind(this);
 }
 
@@ -133,8 +128,8 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
   this.props.handleshow();
       
 })
-      .catch((err) => console.log(err));
-  };
+  .catch((err) => console.log(err));
+};
 
   
 
@@ -142,12 +137,9 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
 
   render() {
     const { submitSuccess, loading } = this.state;
-
     return (
       <div className="outerProfile">
         <p className="userProfileHeader">User Profile</p>
-        
-
         <Form onSubmit={this.handleSubmit} className="widthofForm">
         {!submitSuccess && (
             <div className="alert alert-info text-center" role="alert">
@@ -252,13 +244,10 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
               )}
               </FormGroup>
             </Col>
-            
           </Row>
-
           <Button className="submitProfile" type="submit">Submit</Button>
           {loading && <span className="fa fa-circle-o-notch fa-spin" />}
         </Form>
-        
       </div>
       
     );
