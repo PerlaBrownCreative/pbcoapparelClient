@@ -11,6 +11,8 @@ import {
   Col,
   FormText,
 } from "reactstrap";
+import APIURL from '../../helpers/environment';
+
 
 export interface AdminCreateProps {
   token: string;
@@ -74,7 +76,7 @@ class AdminCreate extends React.Component<AdminCreateProps, AdminCreateState> {
     let token = this.props.token
       ? this.props.token
       : localStorage.getItem("token");
-    fetch("http://localhost:4000/productslog/create", {
+    fetch(`${APIURL}/productslog/create`, {
       method: "POST",
       body: JSON.stringify({
         productslog: {

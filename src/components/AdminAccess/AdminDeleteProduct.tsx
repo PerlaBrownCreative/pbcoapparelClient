@@ -2,6 +2,8 @@ import * as React from "react";
 // import { IProductlogResponse } from "./interfaces";
 import { Table, Col, Row, Container, Button } from "reactstrap";
 import "./AdminCreate.css";
+import APIURL from '../../helpers/environment';
+
 
 
 export interface AdminDeleteProductProps {
@@ -27,7 +29,7 @@ class AdminDeleteProduct extends React.Component<
     let token = this.props.token
       ? this.props.token
       : localStorage.getItem("token");
-    fetch(`http://localhost:4000/productslog/delete/${this.props.productlog}`, {
+    fetch(`${APIURL}/productslog/delete/${this.props.productlog}`, {
       method: "DELETE",
       headers: new Headers({
         "Content-Type": "application/json",

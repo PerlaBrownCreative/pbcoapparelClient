@@ -12,6 +12,8 @@ import Cart2 from "../Cart/Cart2";
 import FullProductView from "../Productslog/FullProductView";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Contact from "../Contact";
+import APIURL from '../../helpers/environment'
+
 
 //styles
 import { Wrapper, StyledButton } from "./ProductslogFetch.styles";
@@ -33,7 +35,7 @@ export type CartItemType = {
 };
 
 const getProducts = async (): Promise<CartItemType[]> =>
-  await (await fetch("http://localhost:4000/productslog/")).json();
+  await (await fetch(`${APIURL}/productslog/`)).json();
 
 const ProductslogCards: React.SFC<CartItemProps> = (props) => {
   const [cartOpen, setCartOpen] = useState(false);

@@ -13,6 +13,8 @@ import {
 import './ProductslogFetch1.css'
 import { IProductlogResponse} from "../AdminAccess/interfaces";
 import ProductsCard from "./ProductsCard"
+import APIURL from '../../helpers/environment'
+
 
 export interface ProductslogFetch1Props {
     token: string;
@@ -35,7 +37,7 @@ class ProductslogFetch1 extends React.Component<
 
 
 componentDidMount() {
-    fetch("http://localhost:4000/productslog/")
+    fetch(`${APIURL}/productslog/`)
     .then((res) => res.json())
     .then((json: IProductlogResponse) => {
         console.log(json)

@@ -22,6 +22,8 @@ import {
 } from "react-router-dom";
 import "./FullProductView.css";
 import ReviewsCreate from "../Reviews/ReviewsCreate";
+import APIURL from '../../helpers/environment';
+
 
 export interface FullProductViewProps extends RouteComponentProps<any> {
   //   item: CartItemType;
@@ -60,7 +62,7 @@ class FullProductView extends React.Component<
 
   fetchSingleView = () => {
     const id = this.props.match.params.id;
-    fetch(`http://localhost:4000/productslog/${id}`, {
+    fetch(`${APIURL}/productslog/${id}`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",

@@ -10,6 +10,7 @@ import {
   Row,
 } from "reactstrap";
 import "./Auth.css";
+import APIURL from '../helpers/environment';
 
 const Regex = RegExp(
   /^\s?[A-Z0–9]+[A-Z0–9._+-]{0,}@[A-Z0–9._+-]+\.[A-Z0–9]{2,4}\s?$/i
@@ -86,7 +87,7 @@ export class Login extends React.Component<LoginProps, LoginState> {
     if (validity === true) {
       console.log("Registering can be done");
 
-      let url = "http://localhost:4000/user/login";
+      let url = `${APIURL}/user/login`;
       fetch(url, {
         method: "POST",
         body: JSON.stringify({

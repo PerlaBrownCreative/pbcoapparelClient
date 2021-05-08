@@ -11,6 +11,8 @@ import {
   Alert,
 } from "reactstrap";
 import { IReviewsResponse } from "../AdminAccess/interfaces";
+import APIURL from '../../helpers/environment'
+
 
 export interface UserProfileUpdateProps {
     token: string;
@@ -52,7 +54,7 @@ class UserProfileUpdate extends React.Component<
       : localStorage.getItem("token");
       console.log(this.props.reviews.id)
     fetch(
-      `http://localhost:4000/reviews/update/${this.props.reviews.id}`,
+      `${APIURL}/reviews/update/${this.props.reviews.id}`,
       {
         method: "PUT",
         body: JSON.stringify({

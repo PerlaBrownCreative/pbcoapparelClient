@@ -4,6 +4,8 @@ import ReviewsCreate from "../Reviews/ReviewsCreate";
 import ReviewsDisplay from "../Reviews/ReviewsDisplay";
 import ReviewsFetchAll from "../Reviews/ReviewsFetchAll"
 import ReviewsFetchAllDisplay from "./ReviewsFetchAllDisplay";
+import APIURL from '../../helpers/environment';
+
 
 export interface ReviewsIndexProps {
     token: string;
@@ -35,7 +37,7 @@ class ReviewsIndex extends React.Component<
     let token = this.props.token
       ? this.props.token
       : localStorage.getItem("token");
-    fetch("http://localhost:4000/reviews/", {
+    fetch(`${APIURL}/reviews/`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",

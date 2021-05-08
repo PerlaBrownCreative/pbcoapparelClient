@@ -11,6 +11,7 @@ import {
   Alert,
 } from "reactstrap";
 import { IShippingResponse } from "../AdminAccess/interfaces";
+import APIURL from '../../helpers/environment'
 
 export interface UserProfileUpdateProps {
   token: string;
@@ -64,7 +65,7 @@ class UserProfileUpdate extends React.Component<
       : localStorage.getItem("token");
       console.log(this.props.shippinglog.id)
     fetch(
-      `http://localhost:4000/shipping/update/${this.props.shippinglog.id}`,
+      `${APIURL}/shipping/update/${this.props.shippinglog.id}`,
       {
         method: "PUT",
         body: JSON.stringify({

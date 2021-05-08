@@ -1,6 +1,8 @@
 import React from "react";
 import { Table, Col, Row, Container, Button } from "reactstrap";
 import "../User/User.css";
+import APIURL from '../../helpers/environment'
+
 
 export interface ReviewsDeleteProps {
   token: string;
@@ -25,7 +27,7 @@ class ReviewsDelete extends React.Component<
     let token = this.props.token
       ? this.props.token
       : localStorage.getItem("token");
-    fetch(`http://localhost:4000/reviews/delete/${this.props.reviews}`, {
+    fetch(`${APIURL}/reviews/delete/${this.props.reviews}`, {
       method: "DELETE",
       headers: new Headers({
         "Content-Type": "application/json",

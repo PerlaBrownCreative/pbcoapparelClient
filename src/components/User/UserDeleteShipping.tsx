@@ -1,6 +1,8 @@
 import React from 'react'
 import { Table, Col, Row, Container, Button } from "reactstrap";
 import "./User.css"
+import APIURL from '../../helpers/environment'
+
 
 
 export interface UserDeleteShippingProps {
@@ -30,7 +32,7 @@ class UserDeleteShipping extends React.Component<UserDeleteShippingProps, UserDe
         let token = this.props.token
           ? this.props.token
           : localStorage.getItem("token");
-        fetch(`http://localhost:4000/shipping/delete/${this.props.shippinglog}`, {
+        fetch(`${APIURL}/shipping/delete/${this.props.shippinglog}`, {
           method: "DELETE",
           headers: new Headers({
             "Content-Type": "application/json",

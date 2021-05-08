@@ -12,6 +12,8 @@ import { IShippingResponse } from "../AdminAccess/interfaces";
 import UserProfileDisplayCard from "./UserProfileDisplayCard";
 import UserProfile from "./UserProfile";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import APIURL from '../../helpers/environment'
+
 
 
 export interface UserProfileDisplayProps {
@@ -49,7 +51,7 @@ class UserProfileDisplay extends React.Component<
     let token = this.props.token
       ? this.props.token
       : localStorage.getItem("token");
-    fetch("http://localhost:4000/shipping/", {
+    fetch(`${APIURL}/shipping/`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",

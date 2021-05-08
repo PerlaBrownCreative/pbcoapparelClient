@@ -1,5 +1,7 @@
 import React from "react";
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import APIURL from '../../helpers/environment'
+
 
 export interface ReviewsProps {
   fetchReviews: Function;
@@ -41,7 +43,7 @@ class Reviews extends React.Component<ReviewsProps, ReviewsState> {
     let token = this.props.token
       ? this.props.token
       : localStorage.getItem("token");
-    fetch("http://localhost:4000/reviews/create", {
+    fetch(`${APIURL}/reviews/create`, {
       method: "POST",
       body: JSON.stringify({
         reviews: {

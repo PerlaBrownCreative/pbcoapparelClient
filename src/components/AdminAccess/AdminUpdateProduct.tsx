@@ -12,6 +12,8 @@ import {
 } from "reactstrap";
 import { IProductlogResponse } from "./interfaces";
 import "./AdminTable.css";
+import APIURL from '../../helpers/environment';
+
 
 export interface AdminUpdateProductProps {
   token: string;
@@ -60,7 +62,7 @@ class AdminUpdateProduct extends React.Component<
       ? this.props.token
       : localStorage.getItem("token");
     fetch(
-      `http://localhost:4000/productslog/update/${this.props.productlog.id}`,
+      `${APIURL}/productslog/update/${this.props.productlog.id}`,
       {
         method: "PUT",
         body: JSON.stringify({

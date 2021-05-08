@@ -4,6 +4,8 @@ import AdminTable from "./AdminTable";
 import { IProductlogResponse } from "./interfaces";
 import AdminDeleteProduct from "./AdminDeleteProduct";
 import UserProfile from "../User/UserProfile";
+import APIURL from '../../helpers/environment';
+
 
 export interface AdminIndexProps {
   token: string;
@@ -32,7 +34,7 @@ class AdminIndex extends React.Component<AdminIndexProps, AdminIndexState> {
     let token = this.props.token
       ? this.props.token
       : localStorage.getItem("token");
-    fetch("http://localhost:4000/productslog/", {
+    fetch(`${APIURL}/productslog/`, {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",

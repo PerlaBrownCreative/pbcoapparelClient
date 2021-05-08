@@ -13,6 +13,8 @@ import "./User.css";
 import { IProductlogResponse } from "../AdminAccess/interfaces";
 import UserProfileDisplay from "./UserProfileDisplay"
 import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
+import APIURL from '../../helpers/environment'
+
 
 
 
@@ -91,7 +93,7 @@ class UserProfile extends React.Component<UserProfileProps, UserProfileState> {
     let token = this.props.token
       ? this.props.token
       : localStorage.getItem("token");
-    fetch("http://localhost:4000/shipping/create", {
+    fetch(`${APIURL}/shipping/create`, {
       method: "POST",
       body: JSON.stringify({
         shipping: {
