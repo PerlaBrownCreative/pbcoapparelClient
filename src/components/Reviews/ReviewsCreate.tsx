@@ -5,14 +5,14 @@ export interface ReviewsProps {
   fetchReviews: Function;
   token: string;
   username: string;
+  handleshow: Function;
 
 }
 
 export interface ReviewsState {
 rate: number;
 review: string;
-image: string;
-values: [],
+
 loading: boolean,
 submitSuccess: boolean,
 input: string,
@@ -24,8 +24,7 @@ class Reviews extends React.Component<ReviewsProps, ReviewsState> {
     this.state = {
       rate: 0,
       review: "",
-      image: "",
-      values: [],
+      
       loading: false,
       submitSuccess: false,
       input: "",
@@ -64,6 +63,7 @@ class Reviews extends React.Component<ReviewsProps, ReviewsState> {
           review: "",
         });
         this.props.fetchReviews();
+        this.props.handleshow();
       })
       .catch((err) => console.log(err));
   };
@@ -84,7 +84,7 @@ class Reviews extends React.Component<ReviewsProps, ReviewsState> {
       <div>
         <Form className="review"
             onSubmit={this.handleSubmit}
-            noValidate={true}>
+            >
           <FormGroup className="text-center">
         {!submitSuccess && (
             <div className="alert alert-info text-center" role="alert">
@@ -102,7 +102,6 @@ class Reviews extends React.Component<ReviewsProps, ReviewsState> {
 
             <Input type="select" name="select" id="exampleSelect"
             value={this.state.rate}
-
             onChange={(e) => this.setState({ rate: +e.target.value })}>
               <option>1</option>
               <option>2</option>

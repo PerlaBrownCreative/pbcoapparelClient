@@ -9,7 +9,7 @@ import {
 } from "reactstrap";
 import "./User.css";
 import { IShippingResponse } from "../AdminAccess/interfaces";
-import UserProfileDisplayCard from "../User/UserProfileDisplayCard";
+import UserProfileDisplayCard from "./UserProfileDisplayCard";
 import UserProfile from "./UserProfile";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -72,28 +72,6 @@ class UserProfileDisplay extends React.Component<
 handleshow(){
     this.setState({show: !this.state.show})
 }
-
-
-
-
-
-//   changeViews = (e: any) => {
-//       e.preventDefault();
-//     return this.state.shippinglog ? (
-//         <UserProfileDisplayCard
-//         shippinglog={this.state.shippinglog}
-//         token={this.props.token}
-//         fetchShippinglogs={this.fetchShippinglogs}
-//         username={this.props.username}
-//       />
-//     ) : (<UserProfile
-//     token={this.props.token}
-//     fetchShippinglogs={this.fetchShippinglogs}
-//     username={this.props.username}
-//   /> );
-// };
-
-
 
 
 

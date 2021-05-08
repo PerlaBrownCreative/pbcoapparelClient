@@ -8,15 +8,23 @@ import {
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import { IReviewsResponse } from "../AdminAccess/interfaces";
+import { Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import ReviewsDelete from "./ReviewsDelete";
+import ReviewsUpdate from "./ReviewsUpdate"
+
 
 export interface ReviewsDisplayProps {
   fetchReviews: Function;
   token: string;
   username: string;
-  reviews: IReviewsResponse[];
+  reviews: IReviewsResponse;
+  handleshow: Function;
 }
 
-export interface ReviewsDisplayState {}
+export interface ReviewsDisplayState {
+  updateActive: boolean;
+  ReviewsToUpdate: {}
+}
 
 class ReviewsDisplay extends React.Component<
   ReviewsDisplayProps,
@@ -24,39 +32,74 @@ class ReviewsDisplay extends React.Component<
 > {
   constructor(props: ReviewsDisplayProps) {
     super(props);
-    this.state = {};
+    this.state = {
+        updateActive: false,
+        ReviewsToUpdate: {}
+
+
+
+    };
   }
 
-  reviewMapper = () => {
-    return this.props.reviews.map((review, index) => {
-      return (
-        <Slide key={index} index={1}>
-          <b>Rating:</b> {review.rate}/5 - <b>"</b>{review.review}<b>"</b> 
-        </Slide>
-      );
-    });
+  updateOn = () => {
+    this.setState({ updateActive: true });
   };
 
-  render() {
-    return (
-      <div>
-        <h4 className="text-center topreview">Reviews about our store!</h4>
-        <div className="reviewdisplay text-center">
-          <CarouselProvider
-            naturalSlideWidth={300}
-            naturalSlideHeight={20}
-            totalSlides={5}
-            hasMasterSpinner={false}
-            interval={5000}
-            dragEnabled={false}
-            infinite={true}
-          >
-            <Slider>{this.reviewMapper()}</Slider>
+  updateOff = () => {
+    this.setState({ updateActive: false });
+  };
 
-            <ButtonBack className="backbtn">Back</ButtonBack>
-            <ButtonNext className="nextbtn">Next</ButtonNext>
-          </CarouselProvider>
-        </div>
+  displayName = () => {
+    return localStorage.getItem("username")
+      ? `${localStorage.getItem("username")}`
+      : null;
+  };
+
+
+ProtectedUserReview = () => {
+  return this.props.reviews !== null && this.props.reviews.rate !== 0 ? (
+<Col sm="12">
+        <Card className="text-center" body>
+          <CardTitle tag="h5">Here's your review {this.displayName()}!</CardTitle>
+          <CardText><b>Rate:</b> {this.props.reviews.rate}/5</CardText>
+          <CardText><b>Review:</b> {this.props.reviews.review}</CardText>
+          
+          <ReviewsUpdate
+          reviews={this.props.reviews}
+          token={this.props.token}
+          fetchReviews={this.props.fetchReviews}
+          
+          
+          />
+
+          <ReviewsDelete
+          reviews={this.props.reviews.id}
+          token={this.props.token}
+          fetchReviews={this.props.fetchReviews}
+          handleshow={this.props.handleshow}
+
+          
+          />
+        
+        </Card>
+      </Col>
+
+
+  ) : null;
+}
+
+
+
+
+
+  render() {
+    console.log(this.props.reviews)
+    return (
+      <div className="outeryourreview">
+        
+        {this.ProtectedUserReview()}
+
+
       </div>
     );
   }

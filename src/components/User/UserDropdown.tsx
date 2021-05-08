@@ -82,6 +82,11 @@ class UserDropdown extends React.Component<
                 <DropdownItem>
               <Link className="updateProfile" to="/profile">Create/Update Profile</Link>
               </DropdownItem>
+              <DropdownMenu className="dropMenu">
+              <DropdownItem>
+              <Link className="updateProfile" to="/your_review">Create/Update Review</Link>
+              </DropdownItem>
+              </DropdownMenu>
             </DropdownMenu>
           </DropdownToggle>
         </Dropdown>

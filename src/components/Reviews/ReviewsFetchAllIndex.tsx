@@ -2,15 +2,17 @@ import React from "react";
 import { IReviewsResponse } from "../AdminAccess/interfaces";
 import ReviewsCreate from "../Reviews/ReviewsCreate";
 import ReviewsDisplay from "../Reviews/ReviewsDisplay";
+import ReviewsFetchAll from "../Reviews/ReviewsFetchAll"
+import ReviewsFetchAllDisplay from "./ReviewsFetchAllDisplay";
 
 export interface ReviewsIndexProps {
-  token: string;
+    token: string;
   username: string;
 }
 
 export interface ReviewsIndexState {
-  reviews: IReviewsResponse;
-  show: boolean;
+  reviews: IReviewsResponse[];
+  
 }
 
 class ReviewsIndex extends React.Component<
@@ -20,11 +22,9 @@ class ReviewsIndex extends React.Component<
   constructor(props: ReviewsIndexProps) {
     super(props);
     this.state = {
-      reviews: {id: 0, rate: 0, review: ""},
-      show: true,
+      reviews: [],
     };
     this.fetchReviews = this.fetchReviews.bind(this);
-    this.handleShow = this.handleShow.bind(this);
   }
 
   componentDidMount() {
@@ -35,7 +35,7 @@ class ReviewsIndex extends React.Component<
     let token = this.props.token
       ? this.props.token
       : localStorage.getItem("token");
-    fetch("http://localhost:4000/reviews/mine" , {
+    fetch("http://localhost:4000/reviews/", {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -52,35 +52,20 @@ class ReviewsIndex extends React.Component<
       });
   };
 
-  
-  handleShow(){
-    this.setState({show: !this.state.show})
-  }
-  
 
 
 
   render() {
+      console.log(this.state.reviews)
     return (
       <div>
 
-        {this.state.show ? 
-        <ReviewsCreate
+        <ReviewsFetchAllDisplay 
+        reviews={this.state.reviews}
           fetchReviews={this.fetchReviews}
-          token={this.props.token}
           username={this.props.username}
-          handleshow={this.handleShow}
+          token={this.props.token}
           />
-        
-         :
-          <ReviewsDisplay
-          reviews={this.state.reviews}
-          fetchReviews={this.fetchReviews}
-          token={this.props.token}
-          username={this.props.username}
-          handleshow={this.handleShow}
-        />}
-        
         
         
       </div>
