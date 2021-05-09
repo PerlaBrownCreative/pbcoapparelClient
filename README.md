@@ -19,6 +19,17 @@ The plan is to implement stripe and make a searchable component for products in 
 This is a heroku deployed application:
 http://pbcoapparelclient.herokuapp.com/
 
+## Prerequisites
+
+### Install Node JS
+Refer to https://nodejs.org/en/ to install nodejs
+
+### Install create-react-app
+Install create-react-app npm package globally. This will help to easily run the project and also build the source files easily. Use the following command to install create-react-app
+
+```bash
+npm install -g create-react-app
+
 
 ## Available Scripts
 
