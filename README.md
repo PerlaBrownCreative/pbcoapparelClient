@@ -55,7 +55,7 @@ The Application Runs on **localhost:4000**
 4. **Admin Access Components**
 5. **Cart Item Components**
 6. **Cart Components**
-7. Along with Footer/Header/Contact and Navbar components
+7. Along with Footer/Header/Contact and Navbar Components
 
 ## Resources
 
