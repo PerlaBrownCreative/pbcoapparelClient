@@ -49,9 +49,13 @@ The Application Runs on **localhost:4000**
 
 #### Components
 
-1. **Customers** Component : This Component displays a list of customers. This Component gets the data from a json file in assets folder
-
-2. **CustomerDetails** Component : This Component Displays the details of the selected customer. This Component gets its data from a json file in assets folder as well. This Component is the Child Component of *Customers* Component
+1. **User Components**
+2. **Reviews Components**
+3. **Products Components**
+4. **Admin Access Components**
+5. **Cart Item Components**
+6. **Cart Components**
+7. Along with Footer/Header/Contact and Navbar components
 
 ## Resources
 
