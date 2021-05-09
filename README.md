@@ -16,6 +16,8 @@ This project is a simple e-commerce ReactJS Project which demonstrates the follo
 The plan is to implement stripe and make a searchable component for products in the future. 
 
 ## Live Application URL
+This is a heroku deployed application:
+http://pbcoapparelclient.herokuapp.com/
 
 
 ## Available Scripts
