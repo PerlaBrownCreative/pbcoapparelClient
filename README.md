@@ -3,7 +3,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-![Test Image 1](Screen Shot 2021-05-09 at 3.53.22 PM.png)
+![Test Image 1](Images/pbcoapparel_homepage.jpg)
 
 
 
