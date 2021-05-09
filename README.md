@@ -3,6 +3,21 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## What is the use of this repo:
+
+This project is a simple e-commerce ReactJS Project which demonstrates the following:
+
+1. Creating class components.
+2. Making HTTP calls
+3. Communication between parent and child components while using Typescript
+4. Using Reactstrap/Material UI for styling
+5. Using routing to route throughout the app
+
+The plan is to implement stripe and make a searchable component for products in the future. 
+
+## Live Application URL
+
+
 ## Available Scripts
 
 In the project directory, you can run:
