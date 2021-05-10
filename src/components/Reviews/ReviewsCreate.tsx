@@ -119,7 +119,7 @@ class Reviews extends React.Component<ReviewsProps, ReviewsState> {
 
             onChange={(e) => this.setState({ review: e.target.value })}/>
           </FormGroup>
-          <Button>Submit</Button>
+          <Button className="submit1btn">Submit</Button>
         </Form>
       </div>
     );
