@@ -12,6 +12,12 @@ import {
   Row,
 } from "reactstrap";
 import { CartItemType } from "./ProductsFetch2";
+import ImageShadow from 'react-image-shadow';
+import 'react-image-shadow/assets/index.css';
+import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
+
+
+
 import {
   BrowserRouter as Router,
   Link,
@@ -87,24 +93,27 @@ class FullProductView extends React.Component<
       <div >
         <Container className="fullviewscreen">
             <Row >
-            <Col>
-          <img className="fullimage"
-            width="100%"
+            <Col className="text-center">
+              <div className="fullshirtimage">
+          <ImageShadow  
+          className="fullshirt"
+            width={900}
             src={this.state.fullview.image}
             alt="Card image cap"
-          />
-          </Col>
-          <Col className="text-center">
+          /></div>
           
-              <h2>{this.state.fullview.design_name}</h2>
+          
+              <div className="titleName"><h2>{this.state.fullview.design_name}</h2></div>
               <div className="productinfofull">
-              <br/>Type: {this.state.fullview.product_description}
-              <br/>Color: {this.state.fullview.color}
-              <br/>Size: {this.state.fullview.size}
-              <br/>Price: ${this.state.fullview.price}
+              <br/><h5><b>Type:</b> {this.state.fullview.product_description} | <b>Color:</b> {this.state.fullview.color} | <b>Size:</b> {this.state.fullview.size}</h5>
+              <hr className="fullhr"/>
+              <h2><b>Price:</b> ${this.state.fullview.price}</h2>
             </div>
           </Col>
           </Row>
+          <div className="backtostorebtn"><Link to={"/"}> <FaAngleLeft/><i>Back to store</i></Link></div>
+          
+         
           </Container>
 
         

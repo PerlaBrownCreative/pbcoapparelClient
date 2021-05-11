@@ -44,7 +44,7 @@ class ReviewsDelete extends React.Component<
     return (
       <div>
         <Button
-          className="deleteButton1"
+          className="deleteButton2"
           onClick={() => {
             this.deleteReview();
           }}

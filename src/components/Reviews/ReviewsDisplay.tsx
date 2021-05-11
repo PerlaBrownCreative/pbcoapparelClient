@@ -60,10 +60,10 @@ ProtectedUserReview = () => {
   return this.props.reviews !== null && this.props.reviews.rate !== 0 ? (
 <Col sm="12">
         <Card className="text-center" body>
-          <CardTitle tag="h5">Here's your review {this.displayName()}!</CardTitle>
-          <CardText><b>Rate:</b> {this.props.reviews.rate}/5</CardText>
-          <CardText><b>Review:</b> {this.props.reviews.review}</CardText>
-          
+          <CardTitle tag="h5">Here's your review <b>{this.displayName()}</b>!</CardTitle>
+          <CardText><b>Rate:</b> {this.props.reviews.rate} / 5</CardText>
+          <CardText><b>Review:</b> "{this.props.reviews.review}"</CardText>
+          <div className="outerbuttons1">
           <ReviewsUpdate
           reviews={this.props.reviews}
           token={this.props.token}
@@ -80,7 +80,7 @@ ProtectedUserReview = () => {
 
           
           />
-        
+        </div>
         </Card>
       </Col>
 

@@ -38,13 +38,15 @@
 }
 
 .contactFrm{
-  width: 500px;
+  width: 600px;
   min-height: 300px;
   border: lightgrey 1px solid;
   padding: 50px;
   border-radius: 20px;
   margin: auto;
   margin-bottom: 100px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 .footerBottom{
@@ -69,6 +71,7 @@
 .review{
   width: 500px;
   margin: auto;
+  margin-top: 80px;
 }
 
 .reviewdisplay{
@@ -79,6 +82,11 @@
   padding: 10px;
   border-radius: 20px;
   margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #34495E;
+  color: white;
+  padding-top: 30px;
+  
   
   
 }
@@ -88,7 +96,7 @@
 }
 
 .backbtn{
-  width: 80px;
+  width: 40px;
   height: 36px;
   border-radius: 8px;
   border: none;
@@ -98,7 +106,7 @@
 }
 
 .nextbtn{
-  width: 80px;
+  width: 40px;
   height: 36px;
   border-radius: 8px;
   border: none;
@@ -110,6 +118,7 @@
   margin: auto;
   width: 542px;
   margin-top: 40px;
+  border-radius: 15px;
 }
 
 
@@ -124,5 +133,78 @@
 
 .submit1btn{
   background-color: #34495E  !important;
+}
+
+.submitbtn1{
+  background-color: #34495E  !important;
+
+
+}
+
+.outerbuttons1{
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+
+}
+
+.deleteButton2{
+  background-color: red !important;
+  margin-left: 10px;
+}
+
+.ratebar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  background-color: #34495E ;
+  color: white;
+  border-radius: 15px;
+}
+
+.outerouterreview{
+    height: 380px;
+    width: 600px;
+    margin: auto;
+    border: lightgrey 1px solid;
+    padding: 40px;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.fullshirt{
+  border-radius: 20px;
+}
+
+.fullshirtimage{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 80px;
+  margin-bottom: 40px;
+}
+
+.titleName{
+  background-color: #34495E;
+  height: 70px;
+  width: 900px;
+  margin: auto;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+}
+
+.fullhr{
+  width: 900px;
+  margin-top: 30px;
+}
+
+.backtostorebtn{
+  display: flex;
+  justify-content: center;
 }
 

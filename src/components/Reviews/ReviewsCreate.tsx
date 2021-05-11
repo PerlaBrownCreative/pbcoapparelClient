@@ -83,15 +83,18 @@ class Reviews extends React.Component<ReviewsProps, ReviewsState> {
     const { submitSuccess, loading } = this.state;
 
     return (
-      <div>
-        <Form className="review"
+      <div className="">
+                <p className="userProfileHeader text-center">User Review</p>
+
+        <Form className="outerouterreview"
             onSubmit={this.handleSubmit}
             >
           <FormGroup className="text-center">
         {!submitSuccess && (
             <div className="alert alert-info text-center" role="alert">
-              Hi {this.displayName()} rate our store!
+              Hi <b>{this.displayName()}</b> rate our store!
             </div>
+            
           )}
           {submitSuccess && (
             <div className="alert alert-info text-center" role="alert">

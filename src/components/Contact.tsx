@@ -30,7 +30,7 @@ function ContactForm() {
         />
       </FormGroup>
 
-      <Button classname="submitbtn1" disabled={state.submitting}>
+      <Button className="submitbtn1" disabled={state.submitting}>
         Submit
       </Button>
     </Form>

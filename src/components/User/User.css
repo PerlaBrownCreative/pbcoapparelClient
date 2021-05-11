@@ -24,11 +24,12 @@
 }
 
 .UserDisplay{
-    width: 400px;
+    width: 450px;
     margin: auto;
     border: #34495E  2px solid !important;
     padding: 10px;
     border-radius: 30px !important;
+    margin-top: 100px;
 }
 
 .photoProfile{

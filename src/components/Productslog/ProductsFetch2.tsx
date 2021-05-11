@@ -99,7 +99,7 @@ const ProductslogCards: React.SFC<CartItemProps> = (props) => {
         </Drawer>
         <StyledButton onClick={() => setCartOpen(true)}>
           <Badge badgeContent={getTotalItems(cartItems)} color="error">
-            <AddShippingCartIcon />
+            <AddShippingCartIcon className="shoppingcartbutton"/>
           </Badge>
         </StyledButton>
         

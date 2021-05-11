@@ -8,6 +8,8 @@ import {
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import { IReviewsResponse } from "../AdminAccess/interfaces";
+import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
+
 
 export interface ReviewsFetchAllDisplayProps {
   fetchReviews: Function;
@@ -32,7 +34,7 @@ ReviewsFetchAllDisplayState
     return this.props.reviews.map((review, index) => {
       return (
         <Slide key={index} index={1}>
-          <b>Rating:</b> {review.rate}/5 - <b>"</b>{review.review}<b>"</b> 
+          <b>Rating:</b> {review.rate}/5 | <b>Review</b>: <b>"</b>{review.review}<b>"</b> 
         </Slide>
       );
     });
@@ -43,8 +45,8 @@ ReviewsFetchAllDisplayState
   protectedUserViewReviews = () => {
     return this.props.reviews !== null ? (
         <div>
-        <h4 className="text-center topreview">Reviews about our store!</h4>
-        <div className="reviewdisplay text-center">
+        <h4 className="text-center topreview"><b>Reviews</b></h4>
+        <div className=" text-center">
           <CarouselProvider
             naturalSlideWidth={300}
             naturalSlideHeight={20}
@@ -54,10 +56,11 @@ ReviewsFetchAllDisplayState
             dragEnabled={false}
             infinite={true}
           >
-            <Slider>{this.reviewMapper()}</Slider>
+            <div className="reviewdisplay text-center"><Slider>{this.reviewMapper()}</Slider></div>
+            
 
-            <ButtonBack className="backbtn">Back</ButtonBack>
-            <ButtonNext className="nextbtn">Next</ButtonNext>
+            <ButtonBack className="backbtn"><FaAngleLeft/></ButtonBack>
+            <ButtonNext className="nextbtn"><FaAngleRight/></ButtonNext>
           </CarouselProvider>
         </div>
       </div>
